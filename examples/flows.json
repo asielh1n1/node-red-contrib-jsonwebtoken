@@ -1,0 +1,1403 @@
+[
+    {
+        "id": "23fa2b3d2b99a86f",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": [
+            {
+                "name": "JWT_PrivateKey",
+                "value": "[45,45,45,45,45,66,69,71,73,78,32,80,82,73,86,65,84,69,32,75,69,89,45,45,45,45,45,13,10,77,73,73,69,118,81,73,66,65,68,65,78,66,103,107,113,104,107,105,71,57,119,48,66,65,81,69,70,65,65,83,67,66,75,99,119,103,103,83,106,65,103,69,65,65,111,73,66,65,81,68,68,119,47,101,67,102,108,43,119,78,54,82,106,13,10,110,118,43,76,99,51,48,80,104,77,101,43,75,117,80,97,79,50,101,74,85,116,67,67,76,67,69,110,103,116,78,49,82,110,120,52,78,102,117,102,78,100,72,83,81,114,57,47,89,51,88,119,103,47,55,74,50,122,99,73,114,50,108,115,13,10,53,55,110,86,87,72,74,97,89,88,99,120,70,119,54,56,118,88,52,65,69,71,118,57,83,104,50,104,43,70,100,105,78,116,65,47,66,69,80,77,113,118,119,52,107,51,118,98,52,102,102,113,52,107,85,89,120,79,57,108,78,73,89,71,13,10,56,70,110,74,84,78,78,104,85,52,53,114,50,113,69,67,108,113,88,66,106,54,115,81,82,83,116,79,71,89,108,87,109,108,119,51,108,89,117,56,108,116,100,112,89,114,105,86,109,122,88,43,82,76,107,50,121,48,104,86,71,116,107,76,13,10,51,48,67,113,108,51,66,101,117,69,75,72,68,75,86,101,65,84,97,114,75,72,86,101,116,120,66,99,90,114,115,50,121,113,98,97,85,83,78,67,110,117,107,112,82,98,79,100,102,101,75,43,68,82,100,99,51,122,48,122,78,90,66,66,13,10,118,53,112,102,112,51,79,66,49,48,122,70,66,78,84,70,84,90,48,97,75,106,49,82,120,76,121,82,108,57,85,114,115,116,118,67,84,117,72,65,49,56,105,115,52,114,106,52,52,66,113,116,77,48,76,65,97,68,72,118,112,71,56,117,13,10,111,52,51,120,82,43,66,90,65,103,77,66,65,65,69,67,103,103,69,65,74,104,103,118,82,78,120,48,111,71,84,106,102,50,78,69,86,81,50,102,75,51,76,113,76,52,53,72,69,111,78,50,122,86,107,112,75,47,117,77,90,66,84,111,13,10,77,121,48,74,77,90,100,72,112,74,54,106,101,117,102,48,80,99,84,77,65,89,97,101,65,81,102,65,101,78,99,120,105,55,105,52,66,57,85,84,81,53,85,116,122,89,97,119,72,110,103,57,87,97,80,89,98,56,121,74,89,97,104,105,13,10,48,77,68,98,50,122,100,111,80,104,54,84,119,67,113,113,56,111,110,82,90,89,113,115,97,88,113,66,72,48,43,79,79,84,70,121,78,50,76,85,121,49,54,111,71,48,76,76,68,67,98,109,107,72,106,49,106,56,47,49,56,108,100,99,13,10,106,55,66,52,84,108,78,120,86,65,48,55,79,85,102,81,51,73,89,53,89,55,72,111,114,82,103,57,108,105,89,80,55,71,87,114,88,112,79,98,55,70,99,43,102,116,43,43,74,100,87,87,100,107,114,108,106,118,97,54,49,99,97,108,13,10,122,120,106,110,102,115,113,89,74,103,51,99,55,116,105,83,78,53,116,48,52,69,83,119,82,55,81,74,56,47,120,118,57,103,87,43,49,80,78,119,80,52,43,53,111,113,108,119,43,69,110,98,51,97,119,67,105,71,69,86,90,80,50,112,13,10,66,78,114,71,52,83,122,76,55,57,65,109,110,54,113,88,71,88,72,121,77,89,49,69,55,47,84,98,66,51,113,120,77,53,65,56,98,68,84,69,48,81,75,66,103,81,68,114,78,98,80,120,86,121,111,120,88,53,47,98,121,112,86,69,13,10,67,120,47,52,105,87,65,52,43,109,80,97,80,70,109,88,86,118,79,74,75,87,43,102,73,43,57,117,121,97,104,113,74,71,121,105,90,103,100,78,116,118,87,78,98,69,79,50,118,75,112,66,88,85,54,103,90,109,78,80,87,48,48,106,13,10,90,75,68,52,50,89,66,72,75,120,99,57,108,117,101,74,111,79,97,97,89,79,43,113,85,77,85,107,98,78,120,74,89,115,87,65,81,52,75,116,112,80,105,87,76,48,99,83,100,75,105,111,67,68,114,101,99,107,110,100,113,50,47,43,13,10,108,49,113,57,107,50,120,101,103,80,110,117,82,113,52,120,122,76,54,110,84,117,116,43,98,81,75,66,103,81,68,86,69,98,108,70,108,88,76,51,120,87,47,114,53,71,47,57,80,71,55,103,87,122,116,43,77,68,105,81,101,97,77,43,13,10,117,103,72,120,98,113,115,72,99,121,68,70,57,52,85,114,47,49,111,85,70,79,122,105,122,105,97,118,51,51,100,71,99,99,76,50,74,85,81,78,107,54,66,65,75,85,97,119,89,71,111,112,111,100,43,54,67,53,103,54,51,104,53,102,13,10,79,88,81,120,86,53,53,121,54,106,89,86,54,76,65,67,88,102,43,98,117,57,118,80,71,90,47,117,110,105,100,121,51,120,120,118,76,54,103,73,119,84,71,77,48,116,65,74,68,74,70,118,97,119,71,69,88,119,102,111,111,53,117,88,13,10,52,55,51,47,107,55,81,71,72,81,75,66,103,81,67,65,82,80,48,111,116,68,120,83,83,75,47,74,69,83,86,116,119,104,78,104,87,113,109,97,54,82,72,106,82,100,52,108,53,107,108,82,108,56,78,68,113,106,107,56,49,99,82,43,13,10,102,102,97,119,97,97,117,53,43,102,106,88,99,120,57,75,88,73,69,77,118,72,72,81,106,52,88,66,70,83,49,119,67,56,83,116,99,81,43,47,119,65,81,103,108,108,99,87,101,121,84,72,77,43,51,47,108,54,83,114,82,75,75,116,13,10,99,113,118,54,85,116,98,70,69,53,53,116,97,77,76,57,107,90,107,89,97,99,83,81,52,119,114,100,86,69,122,122,76,108,57,82,50,122,47,83,71,99,119,121,52,87,68,70,122,55,53,53,82,49,83,116,48,81,75,66,103,65,103,112,13,10,67,53,49,56,111,100,67,88,103,84,102,90,111,101,104,105,47,105,81,100,109,109,79,48,50,82,87,47,99,116,56,101,74,75,68,111,105,105,104,89,52,110,74,121,106,109,107,109,43,72,52,52,90,118,73,119,122,119,54,66,85,111,73,105,13,10,76,85,78,99,72,103,85,102,71,69,52,99,120,112,90,79,117,119,73,112,76,118,90,106,74,48,116,112,52,109,80,110,81,87,110,54,88,120,107,114,109,122,75,118,110,76,52,97,100,52,87,120,90,106,80,67,87,88,117,56,70,117,113,120,13,10,88,78,100,116,84,100,81,52,65,102,118,81,118,121,76,53,108,107,66,99,75,115,121,49,68,119,112,55,54,97,79,104,108,48,57,73,105,117,97,74,65,111,71,65,83,50,43,118,70,122,49,103,66,103,88,82,81,54,106,71,79,112,70,71,13,10,114,121,71,72,121,69,65,43,110,81,80,97,56,100,101,48,106,82,49,86,119,116,67,74,57,122,67,79,101,97,111,87,105,86,57,54,100,117,77,72,48,122,51,83,107,105,84,99,43,101,87,54,113,89,47,109,71,66,112,76,76,113,112,114,13,10,111,120,121,104,97,78,50,88,115,113,105,118,54,111,52,104,102,90,67,67,70,50,84,121,73,120,114,72,55,57,110,97,77,116,111,56,98,53,113,120,108,73,78,105,76,102,122,49,77,85,75,114,57,77,74,80,79,90,104,107,111,88,98,85,13,10,51,70,54,90,50,103,104,82,52,114,109,98,90,54,116,76,84,72,55,104,79,71,81,61,13,10,45,45,45,45,45,69,78,68,32,80,82,73,86,65,84,69,32,75,69,89,45,45,45,45,45,13,10]",
+                "type": "bin"
+            },
+            {
+                "name": "JWT_Secret",
+                "value": "LE5p8h[A1BQn'%y",
+                "type": "str"
+            },
+            {
+                "name": "JWT_PublicKey",
+                "value": "[45,45,45,45,45,66,69,71,73,78,32,80,85,66,76,73,67,32,75,69,89,45,45,45,45,45,13,10,77,73,73,66,73,106,65,78,66,103,107,113,104,107,105,71,57,119,48,66,65,81,69,70,65,65,79,67,65,81,56,65,77,73,73,66,67,103,75,67,65,81,69,65,119,56,80,51,103,110,53,102,115,68,101,107,89,53,55,47,105,51,78,57,13,10,68,52,84,72,118,105,114,106,50,106,116,110,105,86,76,81,103,105,119,104,74,52,76,84,100,85,90,56,101,68,88,55,110,122,88,82,48,107,75,47,102,50,78,49,56,73,80,43,121,100,115,51,67,75,57,112,98,79,101,53,49,86,104,121,13,10,87,109,70,51,77,82,99,79,118,76,49,43,65,66,66,114,47,85,111,100,111,102,104,88,89,106,98,81,80,119,82,68,122,75,114,56,79,74,78,55,50,43,72,51,54,117,74,70,71,77,84,118,90,84,83,71,66,118,66,90,121,85,122,84,13,10,89,86,79,79,97,57,113,104,65,112,97,108,119,89,43,114,69,69,85,114,84,104,109,74,86,112,112,99,78,53,87,76,118,74,98,88,97,87,75,52,108,90,115,49,47,107,83,53,78,115,116,73,86,82,114,90,67,57,57,65,113,112,100,119,13,10,88,114,104,67,104,119,121,108,88,103,69,50,113,121,104,49,88,114,99,81,88,71,97,55,78,115,113,109,50,108,69,106,81,112,55,112,75,85,87,122,110,88,51,105,118,103,48,88,88,78,56,57,77,122,87,81,81,98,43,97,88,54,100,122,13,10,103,100,100,77,120,81,84,85,120,85,50,100,71,105,111,57,85,99,83,56,107,90,102,86,75,55,76,98,119,107,55,104,119,78,102,73,114,79,75,52,43,79,65,97,114,84,78,67,119,71,103,120,55,54,82,118,76,113,79,78,56,85,102,103,13,10,87,81,73,68,65,81,65,66,13,10,45,45,45,45,45,69,78,68,32,80,85,66,76,73,67,32,75,69,89,45,45,45,45,45]",
+                "type": "bin"
+            }
+        ]
+    },
+    {
+        "id": "1d3388f242cd2519",
+        "type": "jwt sign",
+        "z": "23fa2b3d2b99a86f",
+        "name": "sign by secret",
+        "algorithm": "HS256",
+        "mode": "secret",
+        "secretType": "env",
+        "privateKeyType": "env",
+        "jwkid": "dffgfdgfdg",
+        "jwkidType": "str",
+        "jwkurl": "gfhgfhgfhhjhgjh",
+        "jwkurlType": "str",
+        "expiresIn": "3600",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "",
+        "x": 460,
+        "y": 240,
+        "wires": [
+            [
+                "0d2d2acf522416a6"
+            ]
+        ]
+    },
+    {
+        "id": "027a26b5e641d5a7",
+        "type": "inject",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"sub\":\"kjahkyrer79ew7rsdfn,df\",\"username\":\"user1\"}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "1d3388f242cd2519"
+            ]
+        ]
+    },
+    {
+        "id": "0d2d2acf522416a6",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "47e09b87e595961f",
+        "type": "catch",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 440,
+        "y": 160,
+        "wires": [
+            [
+                "d4f496b766ecc9bd"
+            ]
+        ]
+    },
+    {
+        "id": "d4f496b766ecc9bd",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "9091078e8d3290e1",
+        "type": "jwt sign",
+        "z": "23fa2b3d2b99a86f",
+        "name": "sign by private key",
+        "algorithm": "RS256",
+        "mode": "private-key",
+        "secretType": "str",
+        "privateKeyType": "env",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "expiresIn": "3600",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "",
+        "x": 470,
+        "y": 320,
+        "wires": [
+            [
+                "c6d21a21389abfe8"
+            ]
+        ]
+    },
+    {
+        "id": "6e357cf7a1931245",
+        "type": "inject",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"sub\":\"kjahkyrer79ew7rsdfndf\",\"username\":\"user2\"}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 320,
+        "wires": [
+            [
+                "9091078e8d3290e1"
+            ]
+        ]
+    },
+    {
+        "id": "c6d21a21389abfe8",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "b35fe6be2e475335",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "mode": "public-key",
+        "secretType": "env",
+        "publicKeyType": "env",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "true",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "true",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "x": 640,
+        "y": 480,
+        "wires": [
+            [
+                "6284f3b8ab86a1ff"
+            ]
+        ]
+    },
+    {
+        "id": "6284f3b8ab86a1ff",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "fda38b42e1aea046",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "mode": "secret",
+        "secretType": "env",
+        "publicKeyType": "bin",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "true",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "constraints": [],
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "eae0e5a009f06131"
+            ]
+        ]
+    },
+    {
+        "id": "eae0e5a009f06131",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "7cd80372effe07d3",
+        "type": "inject",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"sub\":\"cfghfgfdsgsdfdffvgxcgsdfgtrftg\",\"username\":\"user4\"}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 480,
+        "wires": [
+            [
+                "61ac0f3f1236d8ca"
+            ]
+        ]
+    },
+    {
+        "id": "1a12f9efdc18bb7b",
+        "type": "http in",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "url": "/api1",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 600,
+        "wires": [
+            [
+                "4adecd11f1efdac8"
+            ]
+        ]
+    },
+    {
+        "id": "c53ff852c86d68d9",
+        "type": "comment",
+        "z": "23fa2b3d2b99a86f",
+        "name": "Sign with secret",
+        "info": "",
+        "x": 260,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "271ec003004c6187",
+        "type": "comment",
+        "z": "23fa2b3d2b99a86f",
+        "name": "Sign with private key",
+        "info": "",
+        "x": 270,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "a927ce220365ed7b",
+        "type": "jwt sign",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithm": "HS256",
+        "mode": "secret",
+        "secretType": "env",
+        "privateKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "expiresIn": 3600,
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "",
+        "notBeforetype": "num",
+        "x": 440,
+        "y": 400,
+        "wires": [
+            [
+                "fda38b42e1aea046"
+            ]
+        ]
+    },
+    {
+        "id": "ac6ad69dd19a14e0",
+        "type": "inject",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"sub\":\"dfgfdgretretrwerf\",\"username\":\"user3\"}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "a927ce220365ed7b"
+            ]
+        ]
+    },
+    {
+        "id": "b87c5295ab6577df",
+        "type": "comment",
+        "z": "23fa2b3d2b99a86f",
+        "name": "Verify with secret ",
+        "info": "",
+        "x": 260,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "bdaf1f85d6944a5c",
+        "type": "comment",
+        "z": "23fa2b3d2b99a86f",
+        "name": "Verify with public key",
+        "info": "",
+        "x": 270,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "61ac0f3f1236d8ca",
+        "type": "jwt sign",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithm": "RS256",
+        "mode": "private-key",
+        "secretType": "str",
+        "privateKeyType": "env",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "expiresIn": 3600,
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "",
+        "notBeforetype": "num",
+        "x": 440,
+        "y": 480,
+        "wires": [
+            [
+                "b35fe6be2e475335"
+            ]
+        ]
+    },
+    {
+        "id": "d05fbd0cd0eab649",
+        "type": "inject",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"sub\":\"vxbvgdfgtretrtsdfdsfvcgf\",\"username\":\"user5\"}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 560,
+        "wires": [
+            [
+                "eaf1af619608fd4e"
+            ]
+        ]
+    },
+    {
+        "id": "eaf1af619608fd4e",
+        "type": "jwt sign",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithm": "HS256",
+        "mode": "secret",
+        "secretType": "env",
+        "privateKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "expiresIn": 3600,
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "",
+        "notBeforetype": "num",
+        "x": 440,
+        "y": 560,
+        "wires": [
+            [
+                "027f05c3587c37e3"
+            ]
+        ]
+    },
+    {
+        "id": "df5495a700613dc9",
+        "type": "comment",
+        "z": "23fa2b3d2b99a86f",
+        "name": "Verify with token bearer",
+        "info": "",
+        "x": 280,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "4adecd11f1efdac8",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "mode": "secret",
+        "secretType": "env",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "false",
+        "ignoreNotBefore": "true",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "bearer_authorization_header",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "x": 440,
+        "y": 600,
+        "wires": [
+            [
+                "0378e01288de93d3"
+            ]
+        ]
+    },
+    {
+        "id": "ed496cb6d9175f99",
+        "type": "http request",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://localhost:1880/api1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "Authorization",
+                "keyValue": "",
+                "valueType": "msg",
+                "valueValue": "payload"
+            }
+        ],
+        "x": 830,
+        "y": 560,
+        "wires": [
+            [
+                "8e986cb1028f9757"
+            ]
+        ]
+    },
+    {
+        "id": "f1fe89fbe358c7f0",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1240,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "027f05c3587c37e3",
+        "type": "function",
+        "z": "23fa2b3d2b99a86f",
+        "name": "function 1",
+        "func": "msg.payload = `Bearer ${msg.payload}`\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 560,
+        "wires": [
+            [
+                "ed496cb6d9175f99"
+            ]
+        ]
+    },
+    {
+        "id": "0378e01288de93d3",
+        "type": "http response",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "8e986cb1028f9757",
+        "type": "json",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1030,
+        "y": 560,
+        "wires": [
+            [
+                "f1fe89fbe358c7f0"
+            ]
+        ]
+    },
+    {
+        "id": "22e03a9170d6c319",
+        "type": "http in",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "url": "/api2",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 720,
+        "wires": [
+            [
+                "33b85e6774c6db5c"
+            ]
+        ]
+    },
+    {
+        "id": "c38b39d9b143cb95",
+        "type": "inject",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"sub\":\"vxbvgdfgtretrtsdfdsfvcgf\",\"username\":\"user5\"}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 680,
+        "wires": [
+            [
+                "e54e5bea8f76a2d6"
+            ]
+        ]
+    },
+    {
+        "id": "e54e5bea8f76a2d6",
+        "type": "jwt sign",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithm": "HS256",
+        "mode": "secret",
+        "secretType": "env",
+        "privateKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "expiresIn": 3600,
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "",
+        "notBeforetype": "num",
+        "x": 440,
+        "y": 680,
+        "wires": [
+            [
+                "761aea4df60ffc5e"
+            ]
+        ]
+    },
+    {
+        "id": "49144131ff93a0bb",
+        "type": "comment",
+        "z": "23fa2b3d2b99a86f",
+        "name": "Verify with token query params",
+        "info": "",
+        "x": 310,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "33b85e6774c6db5c",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "mode": "secret",
+        "secretType": "env",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "false",
+        "ignoreNotBefore": "true",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "query_params",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "x": 440,
+        "y": 720,
+        "wires": [
+            [
+                "1617b9d0d00584e4"
+            ]
+        ]
+    },
+    {
+        "id": "761aea4df60ffc5e",
+        "type": "function",
+        "z": "23fa2b3d2b99a86f",
+        "name": "function 2",
+        "func": "msg.url = `http://localhost:1880/api2?access_token=${msg.payload}`\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 680,
+        "wires": [
+            [
+                "fee72d10dc601b63"
+            ]
+        ]
+    },
+    {
+        "id": "1617b9d0d00584e4",
+        "type": "http response",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "fee72d10dc601b63",
+        "type": "http request",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 830,
+        "y": 680,
+        "wires": [
+            [
+                "75efd6f8c4ecc6bc"
+            ]
+        ]
+    },
+    {
+        "id": "4c22e1878f3f9020",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "75efd6f8c4ecc6bc",
+        "type": "json",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1030,
+        "y": 680,
+        "wires": [
+            [
+                "4c22e1878f3f9020"
+            ]
+        ]
+    },
+    {
+        "id": "9bc0c78dcb92236b",
+        "type": "inject",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sfdgfgfdg",
+        "payloadType": "str",
+        "x": 260,
+        "y": 800,
+        "wires": [
+            [
+                "21b98cfa246c0085"
+            ]
+        ]
+    },
+    {
+        "id": "21b98cfa246c0085",
+        "type": "jwt sign",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithm": "HS256",
+        "mode": "secret",
+        "secretType": "env",
+        "privateKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "expiresIn": "2",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "",
+        "notBeforetype": "num",
+        "x": 440,
+        "y": 800,
+        "wires": [
+            [
+                "1baf390e45bc6ea3"
+            ]
+        ]
+    },
+    {
+        "id": "c24c81c4d50afe16",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "4598eb082702b796",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "mode": "secret",
+        "secretType": "env",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "x": 820,
+        "y": 800,
+        "wires": [
+            [
+                "c24c81c4d50afe16"
+            ]
+        ]
+    },
+    {
+        "id": "1baf390e45bc6ea3",
+        "type": "delay",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 640,
+        "y": 800,
+        "wires": [
+            [
+                "4598eb082702b796"
+            ]
+        ]
+    },
+    {
+        "id": "2cdf65722de4419b",
+        "type": "comment",
+        "z": "23fa2b3d2b99a86f",
+        "name": "Validate expired token",
+        "info": "",
+        "x": 280,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "aee46a1568806f30",
+        "type": "inject",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sfdgfgfdg",
+        "payloadType": "str",
+        "x": 260,
+        "y": 880,
+        "wires": [
+            [
+                "a4b5debfae2f1756"
+            ]
+        ]
+    },
+    {
+        "id": "a4b5debfae2f1756",
+        "type": "jwt sign",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithm": "HS256",
+        "mode": "secret",
+        "secretType": "env",
+        "privateKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "expiresIn": "3600",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "5",
+        "notBeforetype": "num",
+        "x": 440,
+        "y": 880,
+        "wires": [
+            [
+                "629def9c11845120"
+            ]
+        ]
+    },
+    {
+        "id": "107401f0c679911b",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "mode": "secret",
+        "secretType": "env",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "x": 820,
+        "y": 880,
+        "wires": [
+            [
+                "1037bd042a547c56"
+            ]
+        ]
+    },
+    {
+        "id": "629def9c11845120",
+        "type": "delay",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 640,
+        "y": 880,
+        "wires": [
+            [
+                "107401f0c679911b"
+            ]
+        ]
+    },
+    {
+        "id": "f4015c045df43a82",
+        "type": "comment",
+        "z": "23fa2b3d2b99a86f",
+        "name": "Validate not before",
+        "info": "",
+        "x": 270,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "1037bd042a547c56",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "e4b6247f795b776c",
+        "type": "inject",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "sfdgfgfdg",
+        "payloadType": "str",
+        "x": 260,
+        "y": 960,
+        "wires": [
+            [
+                "f50dc7ce8c76927b"
+            ]
+        ]
+    },
+    {
+        "id": "f50dc7ce8c76927b",
+        "type": "jwt sign",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithm": "HS256",
+        "mode": "secret",
+        "secretType": "env",
+        "privateKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "expiresIn": "5",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "",
+        "notBeforetype": "num",
+        "x": 440,
+        "y": 960,
+        "wires": [
+            [
+                "165eb13322b18e06"
+            ]
+        ]
+    },
+    {
+        "id": "519c36fc6f947990",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "mode": "secret",
+        "secretType": "env",
+        "publicKeyType": "bin",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "maxAge": "2",
+        "maxAgeType": "num",
+        "constraints": [],
+        "x": 820,
+        "y": 960,
+        "wires": [
+            [
+                "6f011817b10b0b74"
+            ]
+        ]
+    },
+    {
+        "id": "165eb13322b18e06",
+        "type": "delay",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 640,
+        "y": 960,
+        "wires": [
+            [
+                "519c36fc6f947990"
+            ]
+        ]
+    },
+    {
+        "id": "5a7c564fb9cc7ee7",
+        "type": "comment",
+        "z": "23fa2b3d2b99a86f",
+        "name": "Validate max age",
+        "info": "",
+        "x": 260,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "6f011817b10b0b74",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "7c3438e61941d830",
+        "type": "comment",
+        "z": "23fa2b3d2b99a86f",
+        "name": "Validate extra claims",
+        "info": "",
+        "x": 270,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "1c74b66c7deffd6c",
+        "type": "jwt sign",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithm": "HS256",
+        "mode": "secret",
+        "secretType": "env",
+        "privateKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "expiresIn": 3600,
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "sign": "payload",
+        "signType": "msg",
+        "notBefore": "",
+        "notBeforetype": "num",
+        "x": 440,
+        "y": 1040,
+        "wires": [
+            [
+                "b978b39ff71dc251"
+            ]
+        ]
+    },
+    {
+        "id": "9589158e3db6bf6e",
+        "type": "inject",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"sub\":\"kjahkyrer79ew7rsdfn,df\",\"username\":\"user1\",\"scope\":\"api1 api2\",\"roles\":[\"admin\",\"supervisor\"]}",
+        "payloadType": "json",
+        "x": 250,
+        "y": 1040,
+        "wires": [
+            [
+                "1c74b66c7deffd6c"
+            ]
+        ]
+    },
+    {
+        "id": "fb5caaf5f5267dd6",
+        "type": "debug",
+        "z": "23fa2b3d2b99a86f",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "b978b39ff71dc251",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithms": "",
+        "mode": "secret",
+        "secretType": "env",
+        "publicKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "constraints": [
+            {
+                "property": "sub",
+                "validator": "presence",
+                "value": "",
+                "error": "",
+                "typeValue": "str"
+            },
+            {
+                "property": "scope",
+                "validator": "regexp",
+                "value": "\\bapi2\\b",
+                "error": "",
+                "typeValue": "re"
+            },
+            {
+                "property": "roles",
+                "validator": "includesAny",
+                "value": "[\"admin\"]",
+                "error": "",
+                "typeValue": "json"
+            }
+        ],
+        "x": 640,
+        "y": 1040,
+        "wires": [
+            [
+                "fb5caaf5f5267dd6"
+            ]
+        ]
+    }
+]

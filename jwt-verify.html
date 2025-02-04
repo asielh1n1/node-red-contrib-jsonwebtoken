@@ -1,0 +1,410 @@
+<script type="text/html" data-template-name="jwt verify">
+    <div class="form-row">
+        <label><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-cog"></i> Mode</label>
+        <input type="text" id="node-input-mode">
+    </div>
+    <div class="form-row" id="node-input-secret-div">
+        <label><i class="fa fa-user-secret"></i> Secret</label>
+        <input type="text" id="node-input-secret">
+        <input type="hidden" id="node-input-secretType">
+    </div>
+    <div class="form-row" id="node-input-publicKey-div">
+        <label><i class="fa fa-file"></i> Public Key</label>
+        <input type="text" id="node-input-publicKey">
+        <input type="hidden" id="node-input-publicKeyType">
+    </div>
+    <div class="form-row" id="node-input-jwkid-div">
+        <label><i class="fa fa-id-badge"></i> JWK KID</label>
+        <input type="text" id="node-input-jwkid">
+        <input type="hidden" id="node-input-jwkidType">
+    </div>
+    <div class="form-row" id="node-input-jwkurl-div">
+        <label><i class="fa fa-link"></i> JWK URL</label>
+        <input type="text" id="node-input-jwkurl">
+        <input type="hidden" id="node-input-jwkurlType">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-map-signs"></i> Token origin</label>
+        <input type="text" id="node-input-token">
+    </div>
+    <div class="form-row" id="node-input-algorithms-div">
+        <label><i class="fa fa-key"></i> Algorithms</label>
+        <input type="text" id="node-input-algorithms">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-hourglass-end"></i> Ignore Expiration</label>
+        <input type="text" id="node-input-ignoreExpiration">
+        <input type="hidden" id="node-input-ignoreExpirationType">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-calendar"></i> Ignore "NotBefore"</label>
+        <input type="text" id="node-input-ignoreNotBefore">
+        <input type="hidden" id="node-input-ignoreNotBeforeType">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-users"></i> Validate Audience</label>
+        <input type="text" id="node-input-audience">
+        <input type="hidden" id="node-input-audienceType">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-columns"></i> Validate Issuer</label>
+        <input type="text" id="node-input-issuer">
+        <input type="hidden" id="node-input-issuerType">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-columns"></i> Validate Max Age</label>
+        <input type="text" id="node-input-maxAge">
+        <input type="hidden" id="node-input-maxAgeType">
+    </div>
+    <div class="form-row" id="node-input-order-div">
+        <label><i class="fa fa-check-circle"></i> Validate extra claims</label>
+        <ol id="node-input-validators"></ol>
+    </div>
+</script>
+<script type="text/javascript">
+    const validators = [
+        {value:"presence",label:"Required"},
+        {value:"equal",label:"Equal"},       
+        {value:"regexp",label:"Regular Expression"},
+        {value:"maxlength",label:"Maximum Length"},
+        {value:"minlength",label:"Minimum Length"},
+        {value:"type",label:"Type"},
+        {value:"inclusion",label:"In"},
+        {value:"exclusion",label:"Not In"},
+        {value:"includesAny",label:"Value Includes Any"}
+    ];
+
+    function insertConstraint(container, data){
+        container.css({
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            display: "flex",
+            "align-items":"center"
+        });
+        let inputRows = $('<div></div>',{style:"flex-grow:1"}).appendTo(container);
+        let column1 = $('<div></div>',{style:"display: inline-block;width:25%;padding: 0px 1px"}).appendTo(inputRows);
+        let column2 = $('<div/>',{style:"display: inline-block;width:25%;padding: 0px 1px"}).appendTo(inputRows);
+        let column3 = $('<div/>',{style:"display: inline-block;width:25%;padding: 0px 1px"}).appendTo(inputRows);
+        let column4 = $('<div/>',{style:"display: inline-block;width:23%;padding: 0px 1px"}).appendTo(inputRows);
+        
+        let inputProperty = $('<input type="text" class="node-input-column-property" style="width:100%;">').appendTo(column1);
+        if(data.property)
+            inputProperty.val(data.property);
+        let selectValidator = $('<select/>',{class:"node-input-column-validator",style:"width:100%;"}).appendTo(column2);
+        validators.forEach(item=>{
+            selectValidator.append($("<option></option>").val(item.value).text(item.label));
+        })
+        if(data.validator)
+            selectValidator.val(data.validator);
+
+        $(selectValidator).on('change', function(event) {
+            createValueField(column3, selectValidator.val(), '')
+        })
+        createValueField(column3, data.validator || 'presence', data.value, data.typeValue)
+    
+        let inputError = $('<input type="text" class="node-input-column-error" style="width:100%">').appendTo(column4);
+        if(data.error)
+            inputError.val(data.error);
+    }
+
+    function createValueField(container, type, value, typeValue){
+        let inputValue = null
+        let inputType = null        
+        let types = null
+        let disabled = false
+        $(container).empty();
+        switch (type) {
+            case 'presence':{
+                types = ['str']
+                disabled = true
+            }break;
+            case 'equal':{
+                types = ['str','num','json']
+            }break;
+            case 'regexp':{
+                types = ['re']
+            }break;
+            case 'maxlength':{
+                types = ['num']
+            }break;
+            case 'minlength':{
+                types = ['num']
+            }break;
+            case 'type':{
+                inputValue = $('<input type="text" class="node-input-column-value">').css('width','100%').appendTo(container);
+                $(inputValue).typedInput({type:"string", types:[{
+                    value: "string",
+                    options: dataType
+                }]})
+                $(inputValue).typedInput('value', value)
+            }break;
+            case 'inclusion':{
+                types = ['json']
+            }break;
+            case 'exclusion':{
+                types = ['json']
+            }break;
+            case 'includesAny':{
+                types = ['json', 'str']
+            }break;
+        }
+        if(type != 'type'){
+            inputValue = $('<input type="text" class="node-input-column-value">').css('width','100%').appendTo(container);
+            inputType = $('<input type="hidden" class="node-input-column-type">').appendTo(container);
+            $(inputValue).typedInput({
+                type: typeValue,
+                types: types,
+                typeField: inputType
+            })
+            $(inputValue).typedInput('value', value)
+            $(inputValue).typedInput('type', typeValue || 'str')
+        }
+        
+        if(disabled)
+            $(inputValue).typedInput('disable')
+        
+    }
+
+    function getConstraints() {          
+        
+        let result = []
+        try {
+            let validatorItems = $("#node-input-validators").editableList('items');
+            validatorItems.each(function(i) {
+                const property = $(this).find(".node-input-column-property").val()
+                const validator = $(this).find(".node-input-column-validator").val()
+                const value = $(this).find(".node-input-column-value").val()
+                const typeValue = $(this).find(".node-input-column-type").val()
+                const error = $(this).find(".node-input-column-error").val()
+                result.push({property, validator, value, error, typeValue})
+            });
+        } catch(e){
+            console.log('Error: ', e);
+        }        
+        return result 
+    }
+
+    RED.nodes.registerType('jwt verify',{
+        category: 'security',
+        color: '#90CAF9',
+        defaults: {
+            name: { value: "" },      
+            algorithms: { value: "" },      
+            mode: { value: "" },
+            secretType: { value: "str" },
+            publicKeyType: { value: "str" },      
+            jwkid: { value: "" },      
+            jwkidType: { value: "str" },
+            jwkurl: { value: "" },      
+            jwkurlType: { value: "str" },   
+            ignoreExpiration: { value: false },
+            ignoreExpirationType: { value: 'bool' },
+            ignoreNotBefore: { value: false },
+            ignoreNotBeforeType: { value: 'bool' },
+            audience: { value: "" },      
+            audienceType: { value: "str" },
+            issuer: { value: "" },      
+            issuerType: { value: "str" },
+            token: { value: "" },
+            maxAge: { value: "" },
+            maxAgeType: { value: "" },
+            constraints: { value: [] }
+        },
+        credentials: {
+            secret: { type:"password", validate:function(v) {
+                const mode = $("#node-input-mode").typedInput('value')
+                if( mode == 'secret' && !v)
+                    return false
+                return true
+            }},
+            publicKey: { type:"password", validate:function(v) {
+                const mode = $("#node-input-mode").typedInput('value')
+                if( mode == 'public-key' && !v)
+                    return false
+                return true
+            } },   
+        },
+        inputs: 1,
+        outputs: 1,
+        outputLabels: ['output'],
+        icon: "font-awesome/fa-unlock",
+        label: function() {
+            return this.name || 'jwt verify';
+        },
+        oneditprepare: function () {
+            let _this = this
+
+            $('#node-input-mode').typedInput({
+                types: [
+                    {
+                        value: 'secret',
+                        options: [
+                            { value: "secret", label: "Secret"},
+                            { value: "public-key", label: "Public Key"},
+                            { value: "jwtid", label: "JWKS"}
+                        ]
+                    }
+                ]
+            })
+
+            $("#node-input-mode").on('change', function(event) {
+                const mode = $("#node-input-mode").typedInput('value')
+                hideAllModes()
+                switch (mode) {
+                    case 'secret':{
+                        $("#node-input-secret-div").show()
+                        createAlgorithmField(algorithmHMAC, _this.algorithms )
+                        $("#node-input-algorithms-div").show()
+                    }break;
+                    case 'public-key':{
+                        $("#node-input-publicKey-div").show()
+                        createAlgorithmField(algorithmRSA, _this.algorithms)
+                        $("#node-input-algorithms-div").show()
+                    }break;
+                    case 'jwtid':{
+                        $("#node-input-jwkid-div").show()
+                        $("#node-input-jwkurl-div").show()
+                    }break;
+                }
+                
+            })
+
+            $('#node-input-secret').css({ width: '330px'}).typedInput({
+                type: 'msg',
+                types:['str', 'msg', 'flow','global', 'env'],
+                typeField: '#node-input-secretType'
+            })
+
+            $("#node-input-secret").on('change', function(event, type, value) {
+                if(type == 'str')
+                    $("#node-input-secret").typedInput("type", "password");
+                else $("#node-input-secret").typedInput("type", "text");
+            } );
+
+            $('#node-input-publicKey').css({ width: '330px'}).typedInput({
+                type: 'bin',
+                types:['bin', 'msg', 'flow','global', 'env'],
+                typeField: '#node-input-publicKeyType'
+            })
+
+            $('#node-input-jwkid').css({ width: '330px'}).typedInput({
+                type: 'msg',
+                types:['str', 'msg', 'flow','global'],
+                typeField: '#node-input-jwkidType'
+            })
+            
+            $('#node-input-jwkurl').css({ width: '330px'}).typedInput({
+                type: 'msg',
+                types:['str', 'msg', 'flow','global'],
+                typeField: '#node-input-jwkurlType'
+            })
+
+            $('#node-input-ignoreExpiration').typedInput({
+                type: 'bool',
+                value: false,
+                types:['bool'],
+                typeField: '#node-input-ignoreExpirationType'
+            })
+            
+
+            $('#node-input-ignoreNotBefore').typedInput({
+                type: 'bool',
+                value: false,
+                types:['bool'],
+                typeField: '#node-input-ignoreNotBeforeType'
+            })
+
+            $('#node-input-audience').typedInput({
+                type: 'msg',
+                types:['str', 'msg', 'flow','global', 'env'],
+                typeField: '#node-input-audienceType'
+            })
+
+            $('#node-input-issuer').typedInput({
+                type: 'msg',
+                types:['str', 'msg', 'flow','global', 'env'],
+                typeField: '#node-input-issuerType'
+            })
+
+            $('#node-input-token').typedInput({
+                types: [
+                    {
+                        value: 'payload',
+                        options: [
+                            { value: "payload", label: "msg.payload"},
+                            { value: "token", label: "msg.token"},
+                            { value: "bearer_authorization_header", label: "Authorization Header (Bearer)"},
+                            { value: "query_params", label: "Query Params (access_token)"}
+                        ]
+                    }
+                ]
+            })
+
+            $('#node-input-maxAge').typedInput({
+                type: 'num',
+                value: '',
+                types:['num'],
+                typeField: '#node-input-maxAgeType'
+            })
+
+            if(! _this.mode){
+                hideAllModes()
+                $("#node-input-secret-div").show()
+                $("#node-input-algorithms-div").show()
+                createAlgorithmField(algorithmHMAC, '')
+            }
+
+            $("#node-input-validators").css('min-height','200px').editableList({
+                removable: true,
+                sortable: true,
+                header: $('<div style="display:flex"></div>').append($.parseHTML("<div style='width:25%;display: inline; padding-left:15px'>Property</div><div style='width:25%;display: inline;'>Constraint</div><div style='width:25%;display: inline;'>Value</div><div style='width:25%;display: inline;'>Error Message</div>")),
+                addItem: function(container, index, data) {
+                    insertConstraint(container, data)
+                }
+            })
+
+            if(Array.isArray(this.constraints)){
+                this.constraints.forEach(x=>{
+                    $("#node-input-validators").editableList('addItem', x); 
+                })
+            }
+
+            function hideAllModes() {
+                $("#node-input-algorithms-div").hide()
+                $("#node-input-secret-div").hide()
+                $("#node-input-publicKey-div").hide()
+                $("#node-input-jwkid-div").hide()
+                $("#node-input-jwkurl-div").hide()
+            }
+
+            function createAlgorithmField(options, value) {
+                $("#node-input-algorithms").remove();
+                $('<input>', {
+                    type: 'text',
+                    id: 'node-input-algorithms'
+                }).appendTo($("#node-input-algorithms-div"));
+                $("#node-input-algorithms").css({ width: '330px'}).typedInput({types:[{
+                    multiple: true,
+                    options: options
+                }]})
+                $('#node-input-algorithms').typedInput('value', value)
+            }
+        },
+        oneditsave: function() {
+            let _this = this
+            const constraints = getConstraints()
+            this.constraints = constraints
+        }
+    });
+</script>
+
+
+
+<script type="text/markdown" data-help-name="jwt verify">
+    This node allows you to sign and validate JSON Web Token (JWT)
+
+</script>

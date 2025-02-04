@@ -1,0 +1,34 @@
+{
+  "name": "node-red-contrib-jsonwebtoken",
+  "version": "1.0.0",
+  "description": "This node allows you to sign and validate JSON Web Token (JWT)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "node-red",
+    "jwt",
+    "jsonwebtoken",
+    "security",
+    "sign",
+    "login"
+  ],
+  "author": "Asiel Hernandez Valdes",
+  "license": "ISC",
+  "node-red": {
+    "version": ">=4.0.0",
+    "nodes": {
+      "jwt-sign": "jwt-sign.js",
+      "jwt-verify": "jwt-verify.js"
+    }
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "jwks-rsa": "^3.1.0",
+    "validatorjs": "^3.22.1"
+  }
+}

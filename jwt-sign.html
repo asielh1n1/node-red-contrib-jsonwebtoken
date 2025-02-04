@@ -1,0 +1,259 @@
+<script type="text/html" data-template-name="jwt sign">
+    <div class="form-row">
+        <label><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-cog"></i> Mode</label>
+        <input type="text" id="node-input-mode">
+    </div>
+    <div class="form-row" id="node-input-algorithm-div">
+        <label><i class="fa fa-key"></i> Algorithm</label>
+        <input type="text" id="node-input-algorithm">
+    </div>
+    <div class="form-row" id="node-input-secret-div">
+        <label><i class="fa fa-user-secret"></i> Secret</label>
+        <input type="text" id="node-input-secret">
+        <input type="hidden" id="node-input-secretType">
+    </div>
+    <div class="form-row" id="node-input-privateKey-div">
+        <label><i class="fa fa-file"></i> Private Key</label>
+        <input type="text" id="node-input-privateKey">
+        <input type="hidden" id="node-input-privateKeyType">
+    </div>
+    <div class="form-row" id="node-input-jwkid-div">
+        <label><i class="fa fa-id-badge"></i> JWK KID</label>
+        <input type="text" id="node-input-jwkid">
+        <input type="hidden" id="node-input-jwkidType">
+    </div>
+    <div class="form-row" id="node-input-jwkurl-div">
+        <label><i class="fa fa-link"></i> JWK URL</label>
+        <input type="text" id="node-input-jwkurl">
+        <input type="hidden" id="node-input-jwkurlType">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-hourglass-end"></i> Expires In</label>
+        <input type="text" id="node-input-expiresIn">
+        <input type="hidden" id="node-input-expiresInType">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-map-signs"></i> Data to Sign</label>
+        <input type="text" id="node-input-sign">
+        <input type="hidden" id="node-input-signType">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-users"></i> Audience</label>
+        <input type="text" id="node-input-audience">
+        <input type="hidden" id="node-input-audienceType">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-columns"></i> Issuer</label>
+        <input type="text" id="node-input-issuer">
+        <input type="hidden" id="node-input-issuerType">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-clock-o"></i> Not Before</label>
+        <input type="text" id="node-input-notBefore">
+        <input type="hidden" id="node-input-notBeforeType">
+    </div>
+</script>
+<script type="text/javascript">
+
+    const algorithmHMAC = [
+        { value: "HS256", label: "HS256"},
+        { value: "HS384", label: "HS384"},
+        { value: "HS512", label: "HS512"},
+    ]
+
+    const algorithmRSA = [
+        { value: "RS256", label: "RS256"},
+        { value: "RS384", label: "RS384"},
+        { value: "RS512", label: "RS512"},
+        { value: "PS256", label: "PS256"},
+        { value: "PS384", label: "PS384"},
+        { value: "PS512", label: "PS512"},
+        { value: "ES256", label: "ES256"},
+        { value: "ES384", label: "ES384"},
+        { value: "ES512", label: "ES512"}
+    ]
+
+    RED.nodes.registerType('jwt sign',{
+        category: 'security',
+        color: '#90CAF9',
+        defaults: {
+            name: { value: "" },      
+            algorithm: { value: "", required: true },      
+            mode: { value: "" },
+            secretType: { value: "str" },
+            privateKeyType: { value: "str" },      
+            jwkid: { value: "" },      
+            jwkidType: { value: "str" },
+            jwkurl: { value: "" },      
+            jwkurlType: { value: "str" },   
+            expiresIn: { value: "", required: true },
+            audience: { value: "" },      
+            audienceType: { value: "str" },
+            issuer: { value: "" },      
+            issuerType: { value: "str" },
+            sign: { value: "", required: true },      
+            signType: { value: "msg" },
+            notBefore: { value: "" },
+            notBeforetype: { value: "num" },
+        },
+        credentials: {
+            secret: { type:"password", validate:function(v) {
+                const mode = $("#node-input-mode").typedInput('value')
+                if( mode == 'secret' && !v)
+                    return false
+                return true
+            }},
+            privateKey: { type:"password", validate:function(v) {
+                const mode = $("#node-input-mode").typedInput('value')
+                if( mode == 'private-key' && !v)
+                    return false
+                return true
+            } },   
+        },
+        inputs: 1,
+        outputs: 1,
+        outputLabels: ['output'],
+        icon: "font-awesome/fa-lock",
+        label: function() {
+            return this.name || 'jwt sign';
+        },
+        oneditprepare: function () {
+            let _this = this
+            _this.expiresIn = _this.expiresIn || 3600
+
+            $('#node-input-mode').typedInput({
+                types: [
+                    {
+                        value: 'secret',
+                        options: [
+                            { value: "secret", label: "Secret"},
+                            { value: "private-key", label: "Private Key"}
+                        ]
+                    }
+                ]
+            })
+
+            $("#node-input-mode").on('change', function(event) {
+                const mode = $("#node-input-mode").typedInput('value')
+                hideAllModes()
+                switch (mode) {
+                    case 'secret':{
+                        $("#node-input-secret-div").show()
+                        createAlgorithmField(algorithmHMAC, algorithmHMAC.some(x=> x == _this.algorithm) ?  _this.algorithm : 'HS256')
+                        $("#node-input-algorithm-div").show()
+                    }break;
+                    case 'private-key':{
+                        $("#node-input-privateKey-div").show()
+                        createAlgorithmField(algorithmRSA, algorithmRSA.some(x=> x == _this.algorithm) ?  _this.algorithm : 'RS256')
+                        $("#node-input-algorithm-div").show()
+                    }break;
+                }
+                
+            })
+
+            $('#node-input-secret').css({ width: '330px'}).typedInput({
+                type: 'msg',
+                types:['str', 'msg', 'flow','global', 'env'],
+                typeField: '#node-input-secretType'
+            })
+
+            $("#node-input-secret").on('change', function(event, type, value) {
+                if(type == 'str')
+                    $("#node-input-secret").typedInput("type", "password");
+                else $("#node-input-secret").typedInput("type", "text");
+            } );
+
+            $('#node-input-privateKey').css({ width: '330px'}).typedInput({
+                type: 'bin',
+                types:['bin', 'msg', 'flow','global', 'env'],
+                typeField: '#node-input-privateKeyType'
+            })
+
+            $('#node-input-jwkid').css({ width: '330px'}).typedInput({
+                type: 'msg',
+                types:['str', 'msg', 'flow','global'],
+                typeField: '#node-input-jwkidType'
+            })
+            
+            $('#node-input-jwkurl').css({ width: '330px'}).typedInput({
+                type: 'msg',
+                types:['str', 'msg', 'flow','global'],
+                typeField: '#node-input-jwkurlType'
+            })
+
+            $('#node-input-expiresIn').typedInput({
+                type: 'num',
+                value: '3600',
+                types:['num'],
+                typeField: '#node-input-expiresInType'
+            })
+            $('#node-input-expiresIn').typedInput('value', _this.expiresIn)
+
+            $('#node-input-audience').typedInput({
+                type: 'msg',
+                types:['str', 'msg', 'flow','global', 'env'],
+                typeField: '#node-input-audienceType'
+            })
+
+            $('#node-input-issuer').typedInput({
+                type: 'msg',
+                types:['str', 'msg', 'flow','global', 'env'],
+                typeField: '#node-input-issuerType'
+            })
+
+            $('#node-input-sign').typedInput({
+                type: 'msg',
+                types:['msg', 'str', 'num', 'json', 'flow','global', 'env'],
+                typeField: '#node-input-signType'
+            })
+
+            $('#node-input-notBefore').typedInput({
+                type: 'num',
+                value: '',
+                types:['num'],
+                typeField: '#node-input-notBeforetype'
+            })
+
+            if(!_this.mode){
+                hideAllModes()
+                $("#node-input-secret-div").show()
+                $("#node-input-algorithm-div").show()
+                createAlgorithmField(algorithmHMAC, 'HS256')
+            }
+
+            function hideAllModes() {
+                $("#node-input-algorithm-div").hide()
+                $("#node-input-secret-div").hide()
+                $("#node-input-privateKey-div").hide()
+                $("#node-input-jwkid-div").hide()
+                $("#node-input-jwkurl-div").hide()
+            }
+
+            function createAlgorithmField(options, value) {
+                $("#node-input-algorithm").remove();
+                $('<input>', {
+                    type: 'text',
+                    id: 'node-input-algorithm'
+                }).appendTo($("#node-input-algorithm-div"));
+                $('#node-input-algorithm').css({ width: '330px'}).typedInput({
+                    types: [{ options: options }]
+                })
+                $('#node-input-algorithm').typedInput('value', value)
+            }
+        }
+    });
+
+</script>
+
+
+
+<script type="text/markdown" data-help-name="jwt sign">
+This node allows you to sign and validate JSON Web Token (JWT)
+
+
+
+</script>
