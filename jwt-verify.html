@@ -61,7 +61,7 @@
         <input type="hidden" id="node-input-maxAgeType">
     </div>
     <div class="form-row" id="node-input-order-div">
-        <label><i class="fa fa-check-circle"></i> Validate extra claims</label>
+        <label><i class="fa fa-check-circle"></i> Validate Claims</label>
         <ol id="node-input-validators"></ol>
     </div>
 </script>
@@ -405,6 +405,38 @@
 
 
 <script type="text/markdown" data-help-name="jwt verify">
-    This node allows you to sign and validate JSON Web Token (JWT)
+This node allows verifying the authenticity of a JSON Web Token (JWT).
+
+### Inputs
+
+: payload (string) :  the payload of the message to publish.
+
+
+### Outputs
+
+1. Standard output
+: payload (object) : the standard output of the command.
+
+2. Standard error
+: payload (object) : the standard error of the command.
+
+### Form fields
+
+* **Mode**: Mode to use for verifying the token.
+* **Private Key**: In case of selecting the private key mode, the source of the key must be specified. The input variable must be of type buffer, for any of the selected cases, whether it comes from the message payload or environment variables.
+* **Secret**: In the case of signing the token with a secret key, the source of the key must be specified, which can be a string, input message, or environment variable.
+* **Token origin**: Source of the token.
+* **Algorithms**: Optional, if not specified a defaults will be used based on the type of key provided
+* **Ignore Expiration**: The default value is false; if true, it bypasses the token's expiration date.
+* **Ignore "NotBefore"**: The default value is false; if true, it bypasses the validation that the token is validated before the specified date.
+* *Validate Audience**: Validates that the audience is correct.
+* **Validate Issuer**: Validates that the token issuer is correct.
+* **Validate Max Age**: The "max age" in a JSON Web Token (JWT) refers to the maximum time a token can be considered valid from the moment it was issued. The value is expressed in seconds
+* **Validate Claims**: Allows validating the different claims of the token, ideal for validating the scopes, roles, and users with access to some API resources.
+
+
+### References
+
+- [Json Web Token](https://www.npmjs.com/package/jsonwebtoken)
 
 </script>

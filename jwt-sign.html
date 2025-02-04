@@ -252,8 +252,34 @@
 
 
 <script type="text/markdown" data-help-name="jwt sign">
-This node allows you to sign and validate JSON Web Token (JWT)
+This node allows signing JSON Web Tokens (JWT).
+
+### Inputs
+
+: payload (string | object) :  the payload of the message to publish.
 
 
+### Outputs
 
+1. Standard output
+: payload (string) : the standard output of the command.
+
+2. Standard error
+: payload (string) : the standard error of the command.
+
+### Form fields
+
+* **Mode**: Mode to use for verifying the token.
+* **Algorithm**: Token encryption algorithm, it is recommended to use a private key as it provides more security to the token.
+* **Private Key**: In case of selecting the private key mode, the source of the key must be specified. The input variable must be of type buffer, for any of the selected cases, whether it comes from the message payload or environment variables.
+* **Secret**: In the case of signing the token with a secret key, the source of the key must be specified, which can be a string, input message, or environment variable.
+* **Expires In**: Token expiration time in seconds.
+* **Data to Sign**: Source of the data to be signed, the input must be a JavaScript object. If the input is different from an object, the token is signed with the 'data' claim and the data is added there.
+* **Audience**: Allows configuring the audience of the token.
+* **Issuer**: Allows configuring the issuer of the token.
+* **Not Before**: The "Not Before" (NBF) field in a token is used to specify the moment from which the token is valid. This means that the token will not be accepted by the server before the date and time specified in this field. The value is expressed in seconds.
+
+### References
+
+ - [Json Web Token](https://www.npmjs.com/package/jsonwebtoken)
 </script>

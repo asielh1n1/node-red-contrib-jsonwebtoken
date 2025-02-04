@@ -196,37 +196,6 @@
         "wires": []
     },
     {
-        "id": "b35fe6be2e475335",
-        "type": "jwt verify",
-        "z": "23fa2b3d2b99a86f",
-        "name": "",
-        "mode": "public-key",
-        "secretType": "env",
-        "publicKeyType": "env",
-        "jwkid": "",
-        "jwkidType": "str",
-        "jwkurl": "",
-        "jwkurlType": "str",
-        "ignoreExpiration": "true",
-        "ignoreExpirationType": "bool",
-        "ignoreNotBefore": "true",
-        "ignoreNotBeforeType": "bool",
-        "audience": "",
-        "audienceType": "str",
-        "issuer": "",
-        "issuerType": "str",
-        "token": "payload",
-        "maxAge": "",
-        "maxAgeType": "num",
-        "x": 640,
-        "y": 480,
-        "wires": [
-            [
-                "6284f3b8ab86a1ff"
-            ]
-        ]
-    },
-    {
         "id": "6284f3b8ab86a1ff",
         "type": "debug",
         "z": "23fa2b3d2b99a86f",
@@ -241,38 +210,6 @@
         "x": 820,
         "y": 480,
         "wires": []
-    },
-    {
-        "id": "fda38b42e1aea046",
-        "type": "jwt verify",
-        "z": "23fa2b3d2b99a86f",
-        "name": "",
-        "mode": "secret",
-        "secretType": "env",
-        "publicKeyType": "bin",
-        "jwkid": "",
-        "jwkidType": "str",
-        "jwkurl": "",
-        "jwkurlType": "str",
-        "ignoreExpiration": "false",
-        "ignoreExpirationType": "bool",
-        "ignoreNotBefore": "true",
-        "ignoreNotBeforeType": "bool",
-        "audience": "",
-        "audienceType": "str",
-        "issuer": "",
-        "issuerType": "str",
-        "token": "payload",
-        "maxAge": "",
-        "maxAgeType": "num",
-        "constraints": [],
-        "x": 640,
-        "y": 400,
-        "wires": [
-            [
-                "eae0e5a009f06131"
-            ]
-        ]
     },
     {
         "id": "eae0e5a009f06131",
@@ -328,7 +265,7 @@
         "y": 600,
         "wires": [
             [
-                "4adecd11f1efdac8"
+                "21bd4604b84648a4"
             ]
         ]
     },
@@ -378,7 +315,7 @@
         "y": 400,
         "wires": [
             [
-                "fda38b42e1aea046"
+                "863d0cb6a17a8e40"
             ]
         ]
     },
@@ -453,7 +390,7 @@
         "y": 480,
         "wires": [
             [
-                "b35fe6be2e475335"
+                "69f733c2bda41241"
             ]
         ]
     },
@@ -521,36 +458,6 @@
         "x": 280,
         "y": 520,
         "wires": []
-    },
-    {
-        "id": "4adecd11f1efdac8",
-        "type": "jwt verify",
-        "z": "23fa2b3d2b99a86f",
-        "name": "",
-        "mode": "secret",
-        "secretType": "env",
-        "jwkid": "",
-        "jwkidType": "str",
-        "jwkurl": "",
-        "jwkurlType": "str",
-        "ignoreExpiration": "false",
-        "ignoreExpirationType": "false",
-        "ignoreNotBefore": "true",
-        "ignoreNotBeforeType": "bool",
-        "audience": "",
-        "audienceType": "str",
-        "issuer": "",
-        "issuerType": "str",
-        "token": "bearer_authorization_header",
-        "maxAge": "",
-        "maxAgeType": "num",
-        "x": 440,
-        "y": 600,
-        "wires": [
-            [
-                "0378e01288de93d3"
-            ]
-        ]
     },
     {
         "id": "ed496cb6d9175f99",
@@ -659,7 +566,7 @@
         "y": 720,
         "wires": [
             [
-                "33b85e6774c6db5c"
+                "cc859ef305ddf7c5"
             ]
         ]
     },
@@ -727,36 +634,6 @@
         "x": 310,
         "y": 640,
         "wires": []
-    },
-    {
-        "id": "33b85e6774c6db5c",
-        "type": "jwt verify",
-        "z": "23fa2b3d2b99a86f",
-        "name": "",
-        "mode": "secret",
-        "secretType": "env",
-        "jwkid": "",
-        "jwkidType": "str",
-        "jwkurl": "",
-        "jwkurlType": "str",
-        "ignoreExpiration": "false",
-        "ignoreExpirationType": "false",
-        "ignoreNotBefore": "true",
-        "ignoreNotBeforeType": "bool",
-        "audience": "",
-        "audienceType": "str",
-        "issuer": "",
-        "issuerType": "str",
-        "token": "query_params",
-        "maxAge": "",
-        "maxAgeType": "num",
-        "x": 440,
-        "y": 720,
-        "wires": [
-            [
-                "1617b9d0d00584e4"
-            ]
-        ]
     },
     {
         "id": "761aea4df60ffc5e",
@@ -922,34 +799,6 @@
         "wires": []
     },
     {
-        "id": "4598eb082702b796",
-        "type": "jwt verify",
-        "z": "23fa2b3d2b99a86f",
-        "name": "",
-        "mode": "secret",
-        "secretType": "env",
-        "jwkid": "",
-        "jwkidType": "str",
-        "jwkurl": "",
-        "jwkurlType": "str",
-        "ignoreExpiration": "false",
-        "ignoreExpirationType": "bool",
-        "ignoreNotBefore": "false",
-        "ignoreNotBeforeType": "bool",
-        "audience": "",
-        "audienceType": "str",
-        "issuer": "",
-        "issuerType": "str",
-        "token": "payload",
-        "x": 820,
-        "y": 800,
-        "wires": [
-            [
-                "c24c81c4d50afe16"
-            ]
-        ]
-    },
-    {
         "id": "1baf390e45bc6ea3",
         "type": "delay",
         "z": "23fa2b3d2b99a86f",
@@ -970,7 +819,7 @@
         "y": 800,
         "wires": [
             [
-                "4598eb082702b796"
+                "8af00ce0bd16a880"
             ]
         ]
     },
@@ -1044,34 +893,6 @@
         ]
     },
     {
-        "id": "107401f0c679911b",
-        "type": "jwt verify",
-        "z": "23fa2b3d2b99a86f",
-        "name": "",
-        "mode": "secret",
-        "secretType": "env",
-        "jwkid": "",
-        "jwkidType": "str",
-        "jwkurl": "",
-        "jwkurlType": "str",
-        "ignoreExpiration": "false",
-        "ignoreExpirationType": "bool",
-        "ignoreNotBefore": "false",
-        "ignoreNotBeforeType": "bool",
-        "audience": "",
-        "audienceType": "str",
-        "issuer": "",
-        "issuerType": "str",
-        "token": "payload",
-        "x": 820,
-        "y": 880,
-        "wires": [
-            [
-                "1037bd042a547c56"
-            ]
-        ]
-    },
-    {
         "id": "629def9c11845120",
         "type": "delay",
         "z": "23fa2b3d2b99a86f",
@@ -1092,7 +913,7 @@
         "y": 880,
         "wires": [
             [
-                "107401f0c679911b"
+                "516fe2ddc212cd11"
             ]
         ]
     },
@@ -1182,38 +1003,6 @@
         ]
     },
     {
-        "id": "519c36fc6f947990",
-        "type": "jwt verify",
-        "z": "23fa2b3d2b99a86f",
-        "name": "",
-        "mode": "secret",
-        "secretType": "env",
-        "publicKeyType": "bin",
-        "jwkid": "",
-        "jwkidType": "str",
-        "jwkurl": "",
-        "jwkurlType": "str",
-        "ignoreExpiration": "false",
-        "ignoreExpirationType": "bool",
-        "ignoreNotBefore": "false",
-        "ignoreNotBeforeType": "bool",
-        "audience": "",
-        "audienceType": "str",
-        "issuer": "",
-        "issuerType": "str",
-        "token": "payload",
-        "maxAge": "2",
-        "maxAgeType": "num",
-        "constraints": [],
-        "x": 820,
-        "y": 960,
-        "wires": [
-            [
-                "6f011817b10b0b74"
-            ]
-        ]
-    },
-    {
         "id": "165eb13322b18e06",
         "type": "delay",
         "z": "23fa2b3d2b99a86f",
@@ -1234,7 +1023,7 @@
         "y": 960,
         "wires": [
             [
-                "519c36fc6f947990"
+                "fa7d37ef79d97781"
             ]
         ]
     },
@@ -1397,6 +1186,237 @@
         "wires": [
             [
                 "fb5caaf5f5267dd6"
+            ]
+        ]
+    },
+    {
+        "id": "fa7d37ef79d97781",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithms": "",
+        "mode": "secret",
+        "secretType": "env",
+        "publicKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "maxAge": "2",
+        "maxAgeType": "num",
+        "constraints": [],
+        "x": 820,
+        "y": 960,
+        "wires": [
+            [
+                "6f011817b10b0b74"
+            ]
+        ]
+    },
+    {
+        "id": "516fe2ddc212cd11",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithms": "",
+        "mode": "secret",
+        "secretType": "env",
+        "publicKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "constraints": [],
+        "x": 820,
+        "y": 880,
+        "wires": [
+            [
+                "1037bd042a547c56"
+            ]
+        ]
+    },
+    {
+        "id": "8af00ce0bd16a880",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithms": "",
+        "mode": "secret",
+        "secretType": "env",
+        "publicKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "constraints": [],
+        "x": 820,
+        "y": 800,
+        "wires": [
+            [
+                "c24c81c4d50afe16"
+            ]
+        ]
+    },
+    {
+        "id": "cc859ef305ddf7c5",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithms": "",
+        "mode": "secret",
+        "secretType": "env",
+        "publicKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "query_params",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "constraints": [],
+        "x": 440,
+        "y": 720,
+        "wires": [
+            [
+                "1617b9d0d00584e4"
+            ]
+        ]
+    },
+    {
+        "id": "21bd4604b84648a4",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithms": "",
+        "mode": "secret",
+        "secretType": "env",
+        "publicKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "bearer_authorization_header",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "constraints": [],
+        "x": 440,
+        "y": 600,
+        "wires": [
+            [
+                "0378e01288de93d3"
+            ]
+        ]
+    },
+    {
+        "id": "69f733c2bda41241",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithms": "",
+        "mode": "public-key",
+        "secretType": "env",
+        "publicKeyType": "env",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "constraints": [],
+        "x": 640,
+        "y": 480,
+        "wires": [
+            [
+                "6284f3b8ab86a1ff"
+            ]
+        ]
+    },
+    {
+        "id": "863d0cb6a17a8e40",
+        "type": "jwt verify",
+        "z": "23fa2b3d2b99a86f",
+        "name": "",
+        "algorithms": "",
+        "mode": "secret",
+        "secretType": "env",
+        "publicKeyType": "str",
+        "jwkid": "",
+        "jwkidType": "str",
+        "jwkurl": "",
+        "jwkurlType": "str",
+        "ignoreExpiration": "false",
+        "ignoreExpirationType": "bool",
+        "ignoreNotBefore": "false",
+        "ignoreNotBeforeType": "bool",
+        "audience": "",
+        "audienceType": "str",
+        "issuer": "",
+        "issuerType": "str",
+        "token": "payload",
+        "maxAge": "",
+        "maxAgeType": "num",
+        "constraints": [],
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "eae0e5a009f06131"
             ]
         ]
     }
