@@ -91,6 +91,7 @@
             jwkurl: { value: "" },      
             jwkurlType: { value: "str" },   
             expiresIn: { value: "", required: true },
+            expiresInType: { value: "num" },
             audience: { value: "" },      
             audienceType: { value: "str" },
             issuer: { value: "" },      
@@ -98,7 +99,7 @@
             sign: { value: "", required: true },      
             signType: { value: "msg" },
             notBefore: { value: "" },
-            notBeforetype: { value: "num" },
+            notBeforeType: { value: "num" },
         },
         credentials: {
             secret: { type:"password", validate:function(v) {
@@ -188,7 +189,7 @@
             $('#node-input-expiresIn').typedInput({
                 type: 'num',
                 value: '3600',
-                types:['num'],
+                types:['num', 'msg', 'env', 'flow', 'global'],
                 typeField: '#node-input-expiresInType'
             })
             $('#node-input-expiresIn').typedInput('value', _this.expiresIn)
@@ -214,8 +215,8 @@
             $('#node-input-notBefore').typedInput({
                 type: 'num',
                 value: '',
-                types:['num'],
-                typeField: '#node-input-notBeforetype'
+                types:['num', 'msg', 'env', 'flow', 'global'],
+                typeField: '#node-input-notBeforeType'
             })
 
             if(!_this.mode){

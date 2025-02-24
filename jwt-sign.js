@@ -16,6 +16,7 @@ module.exports = function(RED) {
         this.jwkurl = config.jwkurl;
         this.jwkurlType = config.jwkurlType;
         this.expiresIn = config.expiresIn;
+        this.expiresInType = config.expiresInType;
         this.audience = config.audience;
         this.audienceType = config.audienceType;
         this.issuer = config.issuer;
@@ -23,7 +24,7 @@ module.exports = function(RED) {
         this.sign = config.sign;
         this.signType = config.signType;
         this.notBefore = config.notBefore;
-        this.notBeforeType = config.notBeforetype;
+        this.notBeforeType = config.notBeforeType;
 
         let node = this;
         
@@ -37,7 +38,9 @@ module.exports = function(RED) {
                         data: sign
                     }
                 }
-                let options = { expiresIn: parseInt(node.expiresIn),  algorithm: node.algorithm }
+                let expiresIn = await evaluateNodeProperty(node.expiresIn, node.expiresInType, node, msg)
+                
+                let options = { expiresIn: expiresIn,  algorithm: node.algorithm }
                 const audience = await evaluateNodeProperty(node.audience, node.audienceType, node, msg);
                 if(audience){
                     options.audience = audience

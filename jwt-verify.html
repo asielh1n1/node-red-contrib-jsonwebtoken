@@ -211,7 +211,7 @@
             issuerType: { value: "str" },
             token: { value: "" },
             maxAge: { value: "" },
-            maxAgeType: { value: "" },
+            maxAgeType: { value: "num" },
             constraints: { value: [] }
         },
         credentials: {
@@ -347,7 +347,7 @@
             $('#node-input-maxAge').typedInput({
                 type: 'num',
                 value: '',
-                types:['num'],
+                types:['num', 'msg', 'env', 'flow', 'global'],
                 typeField: '#node-input-maxAgeType'
             })
 
