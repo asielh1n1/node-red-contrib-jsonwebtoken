@@ -47,9 +47,9 @@ module.exports = function(RED) {
         this.name = config.name;
         this.algorithms = config.algorithms; 
         this.mode = config.mode;    
-        this.secret = this.credentials.secret;   
+        this.secret = config.secret;   
         this.secretType = config.secretType;    
-        this.publicKey = this.credentials.publicKey; 
+        this.publicKey = config.publicKey; 
         this.publicKeyType = config.publicKeyType;
         this.jwkid = config.jwkid;
         this.jwkidType = config.jwkidType;
@@ -143,12 +143,7 @@ module.exports = function(RED) {
             
         });
     }
-    RED.nodes.registerType("jwt verify", JwtVerify, { 
-        credentials: {
-            secret: { type:"password" },
-            publicKey: { type:"password" }
-        }
-    });
+    RED.nodes.registerType("jwt verify", JwtVerify);
 
     function evaluateNodeProperty(value, type, node, msg){
         return new Promise((resolve, reject)=>{

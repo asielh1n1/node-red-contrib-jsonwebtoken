@@ -84,7 +84,19 @@
             name: { value: "" },      
             algorithm: { value: "", required: true },      
             mode: { value: "" },
+            secret: { value:"", validate:function(v) {
+                const mode = $("#node-input-mode").typedInput('value')
+                if( mode == 'secret' && !v)
+                    return false
+                return true
+            }},
             secretType: { value: "str" },
+            privateKey: { value: "", validate:function(v) {
+                const mode = $("#node-input-mode").typedInput('value')
+                if( mode == 'private-key' && !v)
+                    return false
+                return true
+            } },
             privateKeyType: { value: "str" },      
             jwkid: { value: "" },      
             jwkidType: { value: "str" },
@@ -100,20 +112,6 @@
             signType: { value: "msg" },
             notBefore: { value: "" },
             notBeforeType: { value: "num" },
-        },
-        credentials: {
-            secret: { type:"password", validate:function(v) {
-                const mode = $("#node-input-mode").typedInput('value')
-                if( mode == 'secret' && !v)
-                    return false
-                return true
-            }},
-            privateKey: { type:"password", validate:function(v) {
-                const mode = $("#node-input-mode").typedInput('value')
-                if( mode == 'private-key' && !v)
-                    return false
-                return true
-            } },   
         },
         inputs: 1,
         outputs: 1,

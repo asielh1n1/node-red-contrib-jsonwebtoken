@@ -195,7 +195,19 @@
             name: { value: "" },      
             algorithms: { value: "" },      
             mode: { value: "" },
+            secret: { value:"", validate:function(v) {
+                const mode = $("#node-input-mode").typedInput('value')
+                if( mode == 'secret' && !v)
+                    return false
+                return true
+            }},
             secretType: { value: "str" },
+            publicKey: { value:"", validate:function(v) {
+                const mode = $("#node-input-mode").typedInput('value')
+                if( mode == 'public-key' && !v)
+                    return false
+                return true
+            } },
             publicKeyType: { value: "str" },      
             jwkid: { value: "" },      
             jwkidType: { value: "str" },
@@ -213,20 +225,6 @@
             maxAge: { value: "" },
             maxAgeType: { value: "num" },
             constraints: { value: [] }
-        },
-        credentials: {
-            secret: { type:"password", validate:function(v) {
-                const mode = $("#node-input-mode").typedInput('value')
-                if( mode == 'secret' && !v)
-                    return false
-                return true
-            }},
-            publicKey: { type:"password", validate:function(v) {
-                const mode = $("#node-input-mode").typedInput('value')
-                if( mode == 'public-key' && !v)
-                    return false
-                return true
-            } },   
         },
         inputs: 1,
         outputs: 1,
