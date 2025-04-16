@@ -1,47 +1,14 @@
-var jwt = require('jsonwebtoken');
-var jwksClient = require('jwks-rsa');
-var validate = require("validate.js");
 
-validate.validators.equal = function(value, options, key, attributes) {
-    if (options.typeValue == 'num' && attributes[key] !== parseFloat(options.attribute)) {
-        return options. message || `^${key} must be equal to ${options.attribute}`;
-    }
-    if (options.typeValue == 'str' && attributes[key] !== options.attribute) {
-        return options. message || `^${key} must be equal to ${options.attribute}`;
-    }
-    if (options.typeValue == 'json' && JSON.stringify(attributes[key]) !== options.attribute) {
-        return options. message || `^${key} must be equal to ${options.attribute}`;
-    }
-};
 
-// Definimos la función de validación personalizada
-validate.validators.regexp = function(value, options, key, attributes) {
-    const regex = new RegExp(options.attribute,'ig');
-    if(!regex.test(value))
-        return options. message || `^${key} does not match the regular expression ${options.attribute}`;
-};
-
-// Definir la constraint personalizada
-validate.validators.includesAny = function(value, options, key, attributes) {
-    if (!Array.isArray(value)) {
-        return `The value ${JSON.stringify(value)} is not an array`;
-    }
-    if (Array.isArray(options.attribute)) {
-        const isValid = value.some(x => options.attribute.includes(x));
-        if (!isValid) {
-            return options. message || `Must include at least one value from the list: ${options.attribute.join(', ')}`;
-        }
-    }
-    if(typeof options.attribute == 'string'){
-        const isValid = value.some(x => x == options.attribute);
-        if (!isValid) {
-            return options. message || `Must include at least one value from ${options.attribute}`;
-        }
-    }
-    
-};
 
 module.exports = function(RED) {
+    var jwt = require('jsonwebtoken');
+    var jwksClient = require('jwks-rsa');
+    const Ajv = require("ajv")
+    const ajv = new Ajv({ allErrors: true, messages: true, $data: true })
+    require("ajv-formats")(ajv);
+    require("ajv-errors")(ajv);
+
     function JwtVerify(config) {
         RED.nodes.createNode(this,config);
         this.name = config.name;
@@ -130,10 +97,20 @@ module.exports = function(RED) {
                     }break;
                 }
                 if(node.constraints && Array.isArray(node.constraints)){
-                    const constraints = generateConstraints(node.constraints)
-                    let result = validate(msg.payload, constraints)
-                    if(result){
-                        throw new Error(`Claims validation failed. ${JSON.stringify(result)}`)
+                    let schema = {
+                        type: "object",
+                        properties: {},
+                        required: [],
+                        additionalProperties: true,
+                        errorMessage: {required:{}}
+                    };
+                    schema = generateConstraints(node.constraints, schema)
+                    const validate = ajv.compile(schema)
+                    const valid = validate(msg.payload)
+                    if(!valid){
+                        msg.payload = validate.errors.map(x=> x.message)
+                        node.error(JSON.stringify(validate.errors), msg);
+                        return;
                     }
                 } 
                 node.send(msg);
@@ -156,79 +133,144 @@ module.exports = function(RED) {
             })
         })
     }
-}
-
-function generateConstraints(constraints){
-    let result = {}
-    constraints.forEach(x=>{
-        if(!result[x.property])
-            result[x.property] = {}
-        typeContrain(result[x.property], x.validator, x.value, x.error, x.typeValue)
-    })
-    return result
-}
-
-function typeContrain(property, validator, value, error, typeValue) {
-    switch (validator) {
-        case 'presence':{
-            property['presence'] = {
-                message: error || null
+    
+    function generateConstraints(constraints, schema){
+        constraints.forEach(x=>{
+            typeContrain(x.property, x.validator, x.value, x.typeValue,x.error, schema)
+        })
+        return schema
+    }
+    
+    function typeContrain(property, validator, value, typeValue, error, schema) {
+        if(!schema.properties[property]){
+            schema.properties[property] = {
+                errorMessage: {}
             }
-        }break;
-        case 'equal':{
-            property['equal'] = {
-                attribute: value,
-                message: error || null,
-                typeValue: typeValue
-            }
-        }break;
-        case 'regexp':{
-            property['regexp'] = {
-                attribute: value,
-                message: error || null
-            }
-        }break;
-        case 'maxlength':{
-            property['length'] = {
-                maximum: parseInt(value),
-                message: error || null
-            }
-        }break;
-        case 'minlength':{
-            property['length'] = {
-                minimum: parseInt(value),
-                message: error || null
-            }
-        }break;
-        case 'type':{
-            property['type'] = {
-                type: value,
-                message: error || null
-            }
-        }break;
-        case 'inclusion':{
-            property['inclusion'] = {
-                within: JSON.parse(value),
-                message: error || null
-            }
-        }break;
-        case 'exclusion':{
-            property['exclusion'] = {
-                within: JSON.parse(value),
-                message: error || null
-            }
-        }break;
-        case 'includesAny':{
-            let result = null
-            try {
-                result = JSON.parse(value)
-            } catch (error) {
-                result = value
-            }
-            property['includesAny'] = {
-                attribute: result,
-                message: error || null
-            }
-        }break;
+        }
+        switch (validator) {
+            case 'required':{
+                schema.required.push(property)
+                schema.errorMessage.required[property] = error || `The ${property} field is required`
+            }break;
+            case 'type':{
+                schema.properties[property].type = value
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type ${value}`
+            }break;
+            case 'email':{
+                schema.properties[property].type = 'string'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type string`
+                schema.properties[property].format = 'email'
+                schema.properties[property].errorMessage.format = error || `The ${property}  field is not a valid email address.`
+            }break;
+            case 'equal':{
+                schema.properties[property].const = value
+                schema.properties[property].errorMessage.const = error || `The ${property} field must be equal to ${value}`
+            }break;
+            case 'equality':{
+                schema.properties[property].const = { $data: `1/${value}` }
+                schema.properties[property].errorMessage.const = error || `The value of the ${property} field must be equal to the value of the ${value} field.`
+            }break;
+            case 'pattern':{
+                schema.properties[property].pattern = value
+                schema.properties[property].errorMessage.pattern = error || `The field ${property} does not match the regular expression ${value}`
+            }break;
+            case 'maxlength':{
+                schema.properties[property].type = 'string'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type string`
+                schema.properties[property].maxLength = parseInt(value)
+                schema.properties[property].errorMessage.maxLength = error || `The ${property} field must have a maximum size of ${value}`
+            }break;
+            case 'minlength':{
+                schema.properties[property].type = 'string'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type string`
+                schema.properties[property].minLength = parseInt(value)
+                schema.properties[property].errorMessage.minLength = error || `The ${property} field must have a minimum size of ${value}`
+            }break;
+            case 'url':{
+                schema.properties[property].type = 'string'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type string`
+                schema.properties[property].format = 'uri'
+                schema.properties[property].errorMessage.format = error || `The ${property} field is not a valid URL.`
+            }break;
+            case 'date':{
+                schema.properties[property].format = 'date'
+                schema.properties[property].errorMessage.format = error || `The ${property} field is not a valid date.`
+            }break;
+            case 'inclusion':{
+                schema.properties[property].type = 'array'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type array`                
+                schema.properties[property].enum = JSON.parse(value)
+                schema.properties[property].errorMessage.enum = error || `The value of the ${property} field is not included in the ${value} list.`
+            }break;
+            case 'exclusion':{
+                schema.properties[property].type = 'array'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type array`                   
+                schema.properties[property].not = {enum:JSON.parse(value)}
+                schema.properties[property].errorMessage.not = error || `The value of the field ${property} cannot be included in the list ${value}.`
+            }break;
+            case 'ipv4':{
+                schema.properties[property].type = 'string'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type string`
+                schema.properties[property].format = 'ipv4'
+                schema.properties[property].errorMessage.format = error || `The ${property} field is not a valid IPv4.`
+            }break;
+            case 'ipv6':{
+                schema.properties[property].type = 'string'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type string`
+                schema.properties[property].format = 'ipv6'
+                schema.properties[property].errorMessage.format = error || `The ${property} field is not a valid IPv6.`
+            }break;
+            case 'hostname':{
+                schema.properties[property].type = 'string'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type string`
+                schema.properties[property].format = 'hostname'
+                schema.properties[property].errorMessage.format = error || `The ${property} field is not a valid hostname.`
+            }break;
+            case 'json':{
+                schema.properties[property].format = 'json-pointer'
+                schema.properties[property].errorMessage.format = error || `The ${property} field is not a valid JSON.`
+            }break;
+            case 'maximum_number':{
+                schema.properties[property].type = 'number'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type number`
+                schema.properties[property].maximum = parseFloat(value)
+                schema.properties[property].errorMessage.maximum = error || `The value of the ${property} field cannot be greater than ${value}.`
+            }break;
+            case 'minimum_number':{
+                schema.properties[property].type = 'number'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type number`
+                schema.properties[property].minimum = parseFloat(value)
+                schema.properties[property].errorMessage.minimum = error || `The value of the ${property} field cannot be less than ${value}.`
+            }break;
+            case 'maximum_items':{
+                schema.properties[property].type = 'array'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type array`
+                schema.properties[property].maxItems = parseFloat(value)
+                schema.properties[property].errorMessage.maxItems = error || `The ${property} field cannot have more than ${value} elements..`
+            }break;
+            case 'minimum_items':{
+                schema.properties[property].type = 'array'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type array`
+                schema.properties[property].minItems = parseFloat(value)
+                schema.properties[property].errorMessage.minItems = error || `The ${property} field cannot have less than ${value} elements.`
+            }break;
+            case 'uuid':{
+                schema.properties[property].type = 'string'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type string`
+                schema.properties[property].format = 'uuid'
+                schema.properties[property].errorMessage.format = error || `The field ${property} is not a valid UUID`
+            }break;
+            case 'any_of':{
+                schema.properties[property].type = 'array'
+                schema.properties[property].errorMessage.type = error || `The ${property} field must be of type array`
+                const list = JSON.parse(value)
+                schema.properties[property].contains = { 
+                    anyOf: list.map(x=> {
+                        return { const: x }
+                    })
+                }
+                schema.properties[property].errorMessage.contains = error || `Field ${property} does not contain any value from list ${value}`
+            }break;
+        }
     }
 }

@@ -66,16 +66,39 @@
     </div>
 </script>
 <script type="text/javascript">
-    const validators = [
-        {value:"presence",label:"Required"},
-        {value:"equal",label:"Equal"},       
-        {value:"regexp",label:"Regular Expression"},
+(function() {
+    let validators = [
+        {value:"required",label:"Required"},
+        {value:"email",label:"Email"},
+        {value:"equal",label:"Equal"},
+        {value:"equality",label:"Equal to property"},        
+        {value:"pattern",label:"Regular Expression"},
         {value:"maxlength",label:"Maximum Length"},
         {value:"minlength",label:"Minimum Length"},
         {value:"type",label:"Type"},
+        {value:"url",label:"URL"},
+        {value:"date",label:"Date"},
         {value:"inclusion",label:"In"},
         {value:"exclusion",label:"Not In"},
-        {value:"includesAny",label:"Value Includes Any"}
+        {value:"ipv4",label:"IP v4"},
+        {value:"ipv6",label:"IP v6"},
+        {value:"hostname",label:"Hostname"},
+        {value:"json",label:"JSON"},
+        {value:"maximum_number",label:"Maximum number"},
+        {value:"minimum_number",label:"Minimum number"},
+        {value:"maximum_items",label:"Maximum Items"},
+        {value:"minimum_items",label:"Minimum Items"},
+        {value:"uuid",label:"UUID"},
+        {value:"any_of",label:"Any Of"},
+    ];
+
+    let dataType = [
+        {value:"array",label:"Array"},
+        {value:"integer",label:"Integer"},
+        {value:"number",label:"Number"},
+        {value:"string",label:"String"},
+        {value:"boolean",label:"Boolean"},
+        {value:"object",label:"Object"}
     ];
 
     function insertConstraint(container, data){
@@ -104,7 +127,7 @@
         $(selectValidator).on('change', function(event) {
             createValueField(column3, selectValidator.val(), '')
         })
-        createValueField(column3, data.validator || 'presence', data.value, data.typeValue)
+        createValueField(column3, data.validator || 'required', data.value, data.typeValue)
     
         let inputError = $('<input type="text" class="node-input-column-error" style="width:100%">').appendTo(column4);
         if(data.error)
@@ -118,15 +141,23 @@
         let disabled = false
         $(container).empty();
         switch (type) {
-            case 'presence':{
+            case 'required':{
                 types = ['str']
                 disabled = true
             }break;
+            case 'date':{
+                types = ['str']
+                disabled = true
+            }break;
+            case 'email':{
+                types = ['str']
+                disabled = true
+            }break;
+            case 'equality':{
+                types = ['str']
+            }break;
             case 'equal':{
                 types = ['str','num','json']
-            }break;
-            case 'regexp':{
-                types = ['re']
             }break;
             case 'maxlength':{
                 types = ['num']
@@ -142,14 +173,53 @@
                 }]})
                 $(inputValue).typedInput('value', value)
             }break;
+            case 'url':{
+                types = ['str']
+                disabled = true
+            }break;
+            case 'ipv4':{
+                types = ['str']
+                disabled = true
+            }break;
+            case 'ipv6':{
+                types = ['str']
+                disabled = true
+            }break;
             case 'inclusion':{
                 types = ['json']
             }break;
             case 'exclusion':{
                 types = ['json']
             }break;
-            case 'includesAny':{
-                types = ['json', 'str']
+            case 'hostname':{
+                types = ['str']
+                disabled = true
+            }break;
+            case 'json':{
+                types = ['str']
+                disabled = true
+            }break;
+            case 'pattern':{
+                types = ['str']
+            }break;
+            case 'maximum_number':{
+                types = ['num']
+            }break;
+            case 'minimum_number':{
+                types = ['num']
+            }break;
+            case 'maximum_items':{
+                types = ['num']
+            }break;
+            case 'minimum_items':{
+                types = ['num']
+            }break;
+            case 'uuid':{
+                types = ['str']
+                disabled = true
+            }break;
+            case 'any_of':{
+                types = ['json']
             }break;
         }
         if(type != 'type'){
@@ -398,6 +468,7 @@
             this.constraints = constraints
         }
     });
+})();
 </script>
 
 
