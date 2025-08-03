@@ -81,9 +81,13 @@ module.exports = function(RED) {
                         msg.payload = jwt.verify(token, publicKey , options);
                     }break;
                     case 'jwtid':{
-                        const jwkid = await evaluateNodeProperty(node.jwkid, node.jwkidType, node, msg);
+                        let jwkid = await evaluateNodeProperty(node.jwkid, node.jwkidType, node, msg);
+                        if(!jwkid){
+                            const decoded = jwt.decode(token, { complete: true });
+                            jwkid = decoded && decoded.header && decoded.header.kid ? decoded.header.kid : "";
+                        }
                         if(!jwkid)
-                            throw new Error('Value not found for variable "JWK KID"')
+                            throw new Error('Value not found for variable "JWK KID"');
                         const jwkurl = await evaluateNodeProperty(node.jwkurl, node.jwkurlType, node, msg);
                         if(!jwkurl)
                             throw new Error('Value not found for variable "JWK URL"')
