@@ -136,11 +136,33 @@ module.exports = function(RED) {
     
     function generateConstraints(constraints, schema){
         constraints.forEach(x=>{
-            typeContrain(x.property, x.validator, x.value, x.typeValue,x.error, schema)
+            const propertyPath = RED.util.normalisePropertyExpression(x.property);
+            const propertyName = propertyPath.pop();
+            const parentSchema = prepareNestedProperty(propertyPath, schema);
+            typeContrain(propertyName, x.validator, x.value, x.typeValue,x.error, parentSchema)
         })
         return schema
     }
-    
+
+    function prepareNestedProperty(propertyPath, schema){
+        let currentSchema = schema;
+        propertyPath.forEach((part) => {
+            currentSchema.required.push(part);
+
+            if (!currentSchema.properties[part]) {
+                currentSchema.properties[part] = {
+                    type: 'object',
+                    properties: {},
+                    required: [],
+                    additionalProperties: true,
+                    errorMessage: { required: {} }
+                };
+            }
+            currentSchema = currentSchema.properties[part];
+        });
+        return currentSchema;
+    }
+
     function typeContrain(property, validator, value, typeValue, error, schema) {
         if(!schema.properties[property]){
             schema.properties[property] = {
