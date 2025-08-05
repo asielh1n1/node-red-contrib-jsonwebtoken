@@ -36,6 +36,16 @@ module.exports = function(RED) {
         this.constraints = config.constraints;
 
         let node = this;
+        let currentJwkUrl = null;
+        let jwksClientInstance = null;
+
+        async function getJwksClient(jwkurl) {
+            if (jwkurl !== currentJwkUrl) {
+                currentJwkUrl = jwkurl;
+                jwksClientInstance = jwksClient({ jwksUri: jwkurl });
+            }
+            return jwksClientInstance;
+        }
         
         node.on('input', async function(msg) {
             try {
@@ -87,9 +97,7 @@ module.exports = function(RED) {
                         const jwkurl = await evaluateNodeProperty(node.jwkurl, node.jwkurlType, node, msg);
                         if(!jwkurl)
                             throw new Error('Value not found for variable "JWK URL"')
-                        var client = jwksClient({
-                            jwksUri: jwkurl
-                        });
+                        const client = await getJwksClient(jwkurl);
                         const key = await client.getSigningKey(jwkid);
                         const signingKey = key.getPublicKey() || key.rsaPublicKey();
                         options.algorithms = [key.alg]
