@@ -18,6 +18,8 @@ module.exports = function(RED) {
         this.secretType = config.secretType;    
         this.publicKey = config.publicKey; 
         this.publicKeyType = config.publicKeyType;
+        this.autoDetectjwkid = config.autoDetectjwkid;
+        this.autoDetectjwkidType = config.autoDetectjwkidType;
         this.jwkid = config.jwkid;
         this.jwkidType = config.jwkidType;
         this.jwkurl = config.jwkurl;
@@ -36,6 +38,16 @@ module.exports = function(RED) {
         this.constraints = config.constraints;
 
         let node = this;
+        let currentJwkUrl = null;
+        let jwksClientInstance = null;
+
+        async function getJwksClient(jwkurl) {
+            if (jwkurl !== currentJwkUrl) {
+                currentJwkUrl = jwkurl;
+                jwksClientInstance = jwksClient({ jwksUri: jwkurl });
+            }
+            return jwksClientInstance;
+        }
         
         node.on('input', async function(msg) {
             try {
@@ -81,18 +93,31 @@ module.exports = function(RED) {
                         msg.payload = jwt.verify(token, publicKey , options);
                     }break;
                     case 'jwtid':{
-                        const jwkid = await evaluateNodeProperty(node.jwkid, node.jwkidType, node, msg);
-                        if(!jwkid)
-                            throw new Error('Value not found for variable "JWK KID"')
+                        const autoDetectjwkid = await evaluateNodeProperty(node.autoDetectjwkid, node.autoDetectjwkidType, node, msg);
+                        let jwkid;
+                        if(autoDetectjwkid){
+                            if(!options.algorithms || options.algorithms.length === 0){
+                                throw new Error('No algorithms specified. Please specify at least one algorithm when using auto-detect JWK KID.')
+                            }
+                            const decoded = jwt.decode(token, { complete: true });
+                            if(!decoded || !decoded.header || !decoded.header.kid)
+                                throw new Error('JWT KID not found in the token header')
+                            jwkid = decoded.header.kid;
+                        }
+                        else {
+                            jwkid = await evaluateNodeProperty(node.jwkid, node.jwkidType, node, msg);
+                            if(!jwkid)
+                                throw new Error('Value not found for variable "JWK KID"')
+                        }
                         const jwkurl = await evaluateNodeProperty(node.jwkurl, node.jwkurlType, node, msg);
                         if(!jwkurl)
                             throw new Error('Value not found for variable "JWK URL"')
-                        var client = jwksClient({
-                            jwksUri: jwkurl
-                        });
+                        const client = await getJwksClient(jwkurl);
                         const key = await client.getSigningKey(jwkid);
                         const signingKey = key.getPublicKey() || key.rsaPublicKey();
-                        options.algorithms = [key.alg]
+                        if(!autoDetectjwkid){
+                            options.algorithms = [key.alg]
+                        }
                         msg.payload = jwt.verify(token, signingKey, options);
                     }break;
                 }
