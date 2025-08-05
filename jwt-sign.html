@@ -77,6 +77,8 @@
         { value: "ES512", label: "ES512"}
     ]
 
+    const algorithmAll = algorithmHMAC.concat(algorithmRSA)
+
     RED.nodes.registerType('jwt sign',{
         category: 'security',
         color: '#90CAF9',

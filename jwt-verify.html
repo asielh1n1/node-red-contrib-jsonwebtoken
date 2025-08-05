@@ -17,6 +17,11 @@
         <input type="text" id="node-input-publicKey">
         <input type="hidden" id="node-input-publicKeyType">
     </div>
+    <div class="form-row" id="node-input-autoDetectjwkid-div">
+        <label><i class="fa fa-magic"></i> Auto detect JWK KID</label>
+        <input type="text" id="node-input-autoDetectjwkid">
+        <input type="hidden" id="node-input-autoDetectjwkidType">
+    </div>
     <div class="form-row" id="node-input-jwkid-div">
         <label><i class="fa fa-id-badge"></i> JWK KID</label>
         <input type="text" id="node-input-jwkid">
@@ -278,7 +283,9 @@
                     return false
                 return true
             } },
-            publicKeyType: { value: "str" },      
+            publicKeyType: { value: "str" },
+            autoDetectjwkid: { value: false },
+            autoDetectjwkidType: { value: 'bool' },
             jwkid: { value: "" },      
             jwkidType: { value: "str" },
             jwkurl: { value: "" },      
@@ -334,11 +341,32 @@
                         $("#node-input-algorithms-div").show()
                     }break;
                     case 'jwtid':{
-                        $("#node-input-jwkid-div").show()
                         $("#node-input-jwkurl-div").show()
+                        $("#node-input-autoDetectjwkid-div").show()
+                        createAlgorithmField(algorithmAll, _this.algorithms )
+                        const autoDetect = $("#node-input-autoDetectjwkid").typedInput('value')
+                        if(autoDetect === "true"){
+                            $("#node-input-jwkid-div").hide()
+                            $("#node-input-algorithms-div").show()
+                        }else{
+                            $("#node-input-jwkid-div").show()
+                            $("#node-input-algorithms-div").hide()
+                        }
                     }break;
                 }
                 
+            })
+
+            $("#node-input-autoDetectjwkid").on('change', function(event) {
+                const autoDetect = $("#node-input-autoDetectjwkid").typedInput('value')
+                console.log('Auto detect: ', autoDetect)
+                if(autoDetect === "true"){
+                    $("#node-input-jwkid-div").hide()
+                    $("#node-input-algorithms-div").show()
+                }else{
+                    $("#node-input-jwkid-div").show()
+                    $("#node-input-algorithms-div").hide()
+                }
             })
 
             $('#node-input-secret').css({ width: '330px'}).typedInput({
@@ -357,6 +385,13 @@
                 type: 'bin',
                 types:['bin', 'msg', 'flow','global', 'env'],
                 typeField: '#node-input-publicKeyType'
+            })
+
+            $('#node-input-autoDetectjwkid').typedInput({
+                type: 'bool',
+                value: false,
+                types:['bool'],
+                typeField: '#node-input-autoDetectjwkidType'
             })
 
             $('#node-input-jwkid').css({ width: '330px'}).typedInput({
@@ -446,6 +481,7 @@
                 $("#node-input-secret-div").hide()
                 $("#node-input-publicKey-div").hide()
                 $("#node-input-jwkid-div").hide()
+                $("#node-input-autoDetectjwkid-div").hide()
                 $("#node-input-jwkurl-div").hide()
             }
 
@@ -494,6 +530,7 @@ This node allows verifying the authenticity of a JSON Web Token (JWT).
 * **Mode**: Mode to use for verifying the token.
 * **Private Key**: In case of selecting the private key mode, the source of the key must be specified. The input variable must be of type buffer, for any of the selected cases, whether it comes from the message payload or environment variables.
 * **Secret**: In the case of signing the token with a secret key, the source of the key must be specified, which can be a string, input message, or environment variable.
+* **Auto detect JWK KID**: If true, it will automatically detect the JWK KID from the JWT kid header. Warning: this can be a security risk if the expected algorithms aren't selected. Make sure to not combine symmetric and asymmetric algorithms, as this can lead to security vulnerabilities.
 * **Token origin**: Source of the token.
 * **Algorithms**: Optional, if not specified a defaults will be used based on the type of key provided
 * **Ignore Expiration**: The default value is false; if true, it bypasses the token's expiration date.
