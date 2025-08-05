@@ -5,7 +5,7 @@ module.exports = function(RED) {
     var jwt = require('jsonwebtoken');
     var jwksClient = require('jwks-rsa');
     const Ajv = require("ajv")
-    const ajv = new Ajv({ allErrors: true, messages: true, $data: true })
+    const ajv = new Ajv({ allErrors: true, messages: true, $data: true, strictTypes: false })
     require("ajv-formats")(ajv);
     require("ajv-errors")(ajv);
 
@@ -112,7 +112,7 @@ module.exports = function(RED) {
                         node.error(JSON.stringify(validate.errors), msg);
                         return;
                     }
-                } 
+                }
                 node.send(msg);
             } catch (error) {
                 node.error(error.message, msg);
