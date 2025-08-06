@@ -1,5 +1,0 @@
-{
-    "watch": ["./"],
-    "ext": "html,js",
-    "exec": "node-red -u D:\\Work\\Personal\\Node-Red\\jsonwebtoken-test -p 1880"
-}
