@@ -25,11 +25,14 @@ module.exports = function(RED) {
         this.signType = config.signType;
         this.notBefore = config.notBefore;
         this.notBeforeType = config.notBeforeType;
+        this.output = config.output;
+        this.outputType = config.outputType;
 
         let node = this;
         
         node.on('input', async function(msg) {
             try {
+                const output = node.output || 'payload'
                 let sign = await evaluateNodeProperty(node.sign, node.signType, node, msg)
                 if(!sign)
                     throw new Error('No data found to sign')
@@ -67,7 +70,7 @@ module.exports = function(RED) {
                     }break;
                 }
                 var token = jwt.sign(sign, secretOrPrivateKey , options);
-                msg.payload = token
+                msg[output] = token
                 node.send(msg);
             } catch (error) {
                 node.error(error.message, msg);

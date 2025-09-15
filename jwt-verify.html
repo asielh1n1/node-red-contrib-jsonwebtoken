@@ -36,6 +36,11 @@
         <label><i class="fa fa-map-signs"></i> Token origin</label>
         <input type="text" id="node-input-token">
     </div>
+    <div class="form-row">
+        <label><i class="fa fa-arrow-right"></i> Output data</label>
+        <input type="text" id="node-input-output">
+        <input type="hidden" id="node-input-outputType">
+    </div>
     <div class="form-row" id="node-input-algorithms-div">
         <label><i class="fa fa-key"></i> Algorithms</label>
         <input type="text" id="node-input-algorithms">
@@ -301,7 +306,11 @@
             token: { value: "" },
             maxAge: { value: "" },
             maxAgeType: { value: "num" },
-            constraints: { value: [] }
+            constraints: { value: [] },
+            output: { value: "payload", validate:function(v) {
+                return v || false
+            }},      
+            outputType: { value: "msg" },
         },
         inputs: 1,
         outputs: 1,
@@ -359,12 +368,15 @@
 
             $("#node-input-autoDetectjwkid").on('change', function(event) {
                 const autoDetect = $("#node-input-autoDetectjwkid").typedInput('value')
-                console.log('Auto detect: ', autoDetect)
-                if(autoDetect === "true"){
+                const mode = $("#node-input-mode").typedInput('value')
+                if(autoDetect === "true" && mode == 'jwtid'){
                     $("#node-input-jwkid-div").hide()
                     $("#node-input-algorithms-div").show()
-                }else{
+                }else if(autoDetect === "false" && mode == 'jwtid'){
                     $("#node-input-jwkid-div").show()
+                    $("#node-input-algorithms-div").hide()
+                } else {
+                    $("#node-input-jwkid-div").hide()
                     $("#node-input-algorithms-div").hide()
                 }
             })
@@ -497,6 +509,13 @@
                 }]})
                 $('#node-input-algorithms').typedInput('value', value)
             }
+
+            $('#node-input-output').typedInput({
+                type: 'msg',
+                value: 'payload',
+                types:['msg'],
+                typeField: '#node-input-outputType'
+            })
         },
         oneditsave: function() {
             let _this = this

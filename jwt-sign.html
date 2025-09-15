@@ -42,6 +42,11 @@
         <input type="hidden" id="node-input-signType">
     </div>
     <div class="form-row">
+        <label><i class="fa fa-arrow-right"></i> Output data</label>
+        <input type="text" id="node-input-output">
+        <input type="hidden" id="node-input-outputType">
+    </div>
+    <div class="form-row">
         <label><i class="fa fa-users"></i> Audience</label>
         <input type="text" id="node-input-audience">
         <input type="hidden" id="node-input-audienceType">
@@ -114,6 +119,10 @@
             signType: { value: "msg" },
             notBefore: { value: "" },
             notBeforeType: { value: "num" },
+            output: { value: "payload", validate:function(v) {
+                return v || false
+            }},      
+            outputType: { value: "msg" },
         },
         inputs: 1,
         outputs: 1,
@@ -217,6 +226,13 @@
                 value: '',
                 types:['num', 'msg', 'env', 'flow', 'global'],
                 typeField: '#node-input-notBeforeType'
+            })
+
+            $('#node-input-output').typedInput({
+                type: 'msg',
+                value: 'payload',
+                types:['msg'],
+                typeField: '#node-input-outputType'
             })
 
             if(!_this.mode){

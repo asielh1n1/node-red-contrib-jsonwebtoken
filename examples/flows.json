@@ -53,6 +53,8 @@
         "signType": "msg",
         "notBefore": "",
         "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
         "x": 460,
         "y": 240,
         "wires": [
@@ -100,7 +102,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 700,
@@ -126,7 +129,7 @@
         "id": "d4f496b766ecc9bd",
         "type": "debug",
         "z": "23fa2b3d2b99a86f",
-        "name": "debug 2",
+        "name": "Error",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -135,7 +138,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 640,
+        "x": 630,
         "y": 160,
         "wires": []
     },
@@ -164,6 +167,8 @@
         "signType": "msg",
         "notBefore": "",
         "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
         "x": 470,
         "y": 320,
         "wires": [
@@ -238,7 +243,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "token",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 820,
@@ -332,6 +338,8 @@
         "signType": "msg",
         "notBefore": "",
         "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
         "x": 440,
         "y": 400,
         "wires": [
@@ -410,6 +418,8 @@
         "signType": "msg",
         "notBefore": "",
         "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
         "x": 440,
         "y": 480,
         "wires": [
@@ -468,6 +478,8 @@
         "signType": "msg",
         "notBefore": "",
         "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
         "x": 440,
         "y": 560,
         "wires": [
@@ -647,6 +659,8 @@
         "signType": "msg",
         "notBefore": "",
         "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
         "x": 440,
         "y": 680,
         "wires": [
@@ -807,6 +821,8 @@
         "signType": "msg",
         "notBefore": "",
         "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
         "x": 440,
         "y": 800,
         "wires": [
@@ -920,6 +936,8 @@
         "signType": "msg",
         "notBefore": "5",
         "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
         "x": 440,
         "y": 880,
         "wires": [
@@ -1038,6 +1056,8 @@
         "signType": "msg",
         "notBefore": "",
         "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
         "x": 440,
         "y": 960,
         "wires": [
@@ -1132,6 +1152,8 @@
         "signType": "msg",
         "notBefore": "",
         "notBeforeType": "num",
+        "output": "payload",
+        "outputType": "msg",
         "x": 440,
         "y": 1040,
         "wires": [
@@ -1155,7 +1177,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"sub\":\"kjahkyrer79ew7rsdfn,df\",\"username\":\"user1\",\"scope\":\"api1 api2\",\"roles\":[\"admin\",\"supervisor\"]}",
+        "payload": "{\"sub\":\"kjahkyrer79ew7rsdfn,df\",\"username\":\"user1\",\"scope\":\"api1 api2\",\"roles\":[\"admin\",\"supervisor\",{\"sss\":\"dddd\"}],\"extra\":{\"first\":{\"name\":\"Pepe\"},\"second\":[1,2,3]}}",
         "payloadType": "json",
         "x": 250,
         "y": 1040,
@@ -1192,6 +1214,8 @@
         "secretType": "env",
         "publicKey": "",
         "publicKeyType": "str",
+        "autoDetectjwkid": "true",
+        "autoDetectjwkidType": "bool",
         "jwkid": "",
         "jwkidType": "str",
         "jwkurl": "",
@@ -1228,8 +1252,17 @@
                 "value": "\\bapi2\\b",
                 "error": "",
                 "typeValue": "str"
+            },
+            {
+                "property": "extra.second",
+                "validator": "any_of",
+                "value": "[3]",
+                "error": "",
+                "typeValue": "json"
             }
         ],
+        "output": "payload",
+        "outputType": "msg",
         "x": 640,
         "y": 1040,
         "wires": [
@@ -1249,6 +1282,8 @@
         "secretType": "env",
         "publicKey": "",
         "publicKeyType": "str",
+        "autoDetectjwkid": "true",
+        "autoDetectjwkidType": "bool",
         "jwkid": "",
         "jwkidType": "str",
         "jwkurl": "",
@@ -1265,6 +1300,8 @@
         "maxAge": "1",
         "maxAgeType": "num",
         "constraints": [],
+        "output": "payload",
+        "outputType": "msg",
         "x": 820,
         "y": 960,
         "wires": [
@@ -1284,6 +1321,8 @@
         "secretType": "env",
         "publicKey": "",
         "publicKeyType": "str",
+        "autoDetectjwkid": "true",
+        "autoDetectjwkidType": "bool",
         "jwkid": "",
         "jwkidType": "str",
         "jwkurl": "",
@@ -1300,6 +1339,8 @@
         "maxAge": "",
         "maxAgeType": "num",
         "constraints": [],
+        "output": "payload",
+        "outputType": "msg",
         "x": 820,
         "y": 880,
         "wires": [
@@ -1319,6 +1360,8 @@
         "secretType": "env",
         "publicKey": "",
         "publicKeyType": "str",
+        "autoDetectjwkid": "true",
+        "autoDetectjwkidType": "bool",
         "jwkid": "",
         "jwkidType": "str",
         "jwkurl": "",
@@ -1335,6 +1378,8 @@
         "maxAge": "",
         "maxAgeType": "num",
         "constraints": [],
+        "output": "payload",
+        "outputType": "msg",
         "x": 820,
         "y": 800,
         "wires": [
@@ -1354,6 +1399,8 @@
         "secretType": "env",
         "publicKey": "",
         "publicKeyType": "str",
+        "autoDetectjwkid": "true",
+        "autoDetectjwkidType": "bool",
         "jwkid": "",
         "jwkidType": "str",
         "jwkurl": "",
@@ -1370,6 +1417,8 @@
         "maxAge": "",
         "maxAgeType": "num",
         "constraints": [],
+        "output": "payload",
+        "outputType": "msg",
         "x": 440,
         "y": 720,
         "wires": [
@@ -1389,6 +1438,8 @@
         "secretType": "env",
         "publicKey": "",
         "publicKeyType": "str",
+        "autoDetectjwkid": "true",
+        "autoDetectjwkidType": "bool",
         "jwkid": "",
         "jwkidType": "str",
         "jwkurl": "",
@@ -1405,6 +1456,8 @@
         "maxAge": "",
         "maxAgeType": "num",
         "constraints": [],
+        "output": "payload",
+        "outputType": "msg",
         "x": 440,
         "y": 600,
         "wires": [
@@ -1424,6 +1477,8 @@
         "secretType": "env",
         "publicKey": "JWT_PrivateKey",
         "publicKeyType": "env",
+        "autoDetectjwkid": "true",
+        "autoDetectjwkidType": "bool",
         "jwkid": "",
         "jwkidType": "str",
         "jwkurl": "",
@@ -1440,6 +1495,8 @@
         "maxAge": "",
         "maxAgeType": "num",
         "constraints": [],
+        "output": "payload",
+        "outputType": "msg",
         "x": 640,
         "y": 480,
         "wires": [
@@ -1459,6 +1516,8 @@
         "secretType": "env",
         "publicKey": "",
         "publicKeyType": "str",
+        "autoDetectjwkid": "true",
+        "autoDetectjwkidType": "bool",
         "jwkid": "",
         "jwkidType": "str",
         "jwkurl": "",
@@ -1475,6 +1534,8 @@
         "maxAge": "",
         "maxAgeType": "num",
         "constraints": [],
+        "output": "token",
+        "outputType": "msg",
         "x": 640,
         "y": 400,
         "wires": [
@@ -1482,5 +1543,13 @@
                 "eae0e5a009f06131"
             ]
         ]
+    },
+    {
+        "id": "9d7cdb9a69b84931",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-jsonwebtoken": "1.0.5"
+        }
     }
 ]

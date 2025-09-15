@@ -36,6 +36,8 @@ module.exports = function(RED) {
         this.maxAge = config.maxAge;
         this.maxAgeType = config.maxAgeType;
         this.constraints = config.constraints;
+        this.output = config.output;
+        this.outputType = config.outputType;
 
         let node = this;
         let currentJwkUrl = null;
@@ -51,6 +53,7 @@ module.exports = function(RED) {
         
         node.on('input', async function(msg) {
             try {
+                const output = node.output || 'payload'
                 let token = ""                
                 if(node.token == 'payload' || node.token == 'token'){
                     token = msg[node.token]
@@ -84,13 +87,13 @@ module.exports = function(RED) {
                         const secret = await evaluateNodeProperty(node.secret, node.secretType, node, msg);
                         if(!secret)
                             throw new Error('Value not found for variable "Secret"')
-                        msg.payload = jwt.verify(token, secret , options);
+                        msg[output] = jwt.verify(token, secret , options);
                     }break;
                     case 'public-key':{
                         const publicKey = await evaluateNodeProperty(node.publicKey, node.publicKeyType, node, msg);
                         if(!publicKey)
                             throw new Error('Value not found for variable "Private Key"')
-                        msg.payload = jwt.verify(token, publicKey , options);
+                        msg[output] = jwt.verify(token, publicKey , options);
                     }break;
                     case 'jwtid':{
                         const autoDetectjwkid = await evaluateNodeProperty(node.autoDetectjwkid, node.autoDetectjwkidType, node, msg);
@@ -118,7 +121,7 @@ module.exports = function(RED) {
                         if(!autoDetectjwkid){
                             options.algorithms = [key.alg]
                         }
-                        msg.payload = jwt.verify(token, signingKey, options);
+                        msg[output] = jwt.verify(token, signingKey, options);
                     }break;
                 }
                 if(node.constraints && Array.isArray(node.constraints)){
@@ -131,7 +134,7 @@ module.exports = function(RED) {
                     };
                     schema = generateConstraints(node.constraints, schema)
                     const validate = ajv.compile(schema)
-                    const valid = validate(msg.payload)
+                    const valid = validate(msg[output])
                     if(!valid){
                         msg.payload = validate.errors.map(x=> x.message)
                         node.error(JSON.stringify(validate.errors), msg);
