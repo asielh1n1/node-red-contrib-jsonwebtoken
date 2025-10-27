@@ -61,6 +61,11 @@
         <input type="text" id="node-input-notBefore">
         <input type="hidden" id="node-input-notBeforeType">
     </div>
+    <div class="form-row">
+        <label><i class="fa fa-lock"></i> Keyid</label>
+        <input type="text" id="node-input-keyid">
+        <input type="hidden" id="node-input-keyidType">
+    </div>
 </script>
 <script type="text/javascript">
 
@@ -121,8 +126,10 @@
             notBeforeType: { value: "num" },
             output: { value: "payload", validate:function(v) {
                 return v || false
-            }},      
+            }},   
             outputType: { value: "msg" },
+            keyid: { value: "" },
+            keyidType: { value: "str" },
         },
         inputs: 1,
         outputs: 1,
@@ -233,6 +240,13 @@
                 value: 'payload',
                 types:['msg'],
                 typeField: '#node-input-outputType'
+            })
+
+            $('#node-input-keyid').typedInput({
+                type: 'str',
+                value: '',
+                types:['str','msg', 'flow','global', 'env'],
+                typeField: '#node-input-keyidType'
             })
 
             if(!_this.mode){

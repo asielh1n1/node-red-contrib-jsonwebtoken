@@ -27,12 +27,15 @@ module.exports = function(RED) {
         this.notBeforeType = config.notBeforeType;
         this.output = config.output;
         this.outputType = config.outputType;
+        this.keyid = config.keyid;
+        this.keyidType = config.keyidType;
 
         let node = this;
         
         node.on('input', async function(msg) {
             try {
                 const output = node.output || 'payload'
+                
                 let sign = await evaluateNodeProperty(node.sign, node.signType, node, msg)
                 if(!sign)
                     throw new Error('No data found to sign')
@@ -41,20 +44,31 @@ module.exports = function(RED) {
                         data: sign
                     }
                 }
+
                 let expiresIn = await evaluateNodeProperty(node.expiresIn, node.expiresInType, node, msg)
                 
                 let options = { expiresIn: expiresIn,  algorithm: node.algorithm }
+
                 const audience = await evaluateNodeProperty(node.audience, node.audienceType, node, msg);
                 if(audience){
                     options.audience = audience
                 }
+
                 const issuer = await evaluateNodeProperty(node.issuer, node.issuerType, node, msg);
                 if(issuer){
                     options.issuer = issuer
                 }
+
                 const notBefore = await evaluateNodeProperty(node.notBefore, node.notBeforeType, node, msg);
                 if(notBefore){
                     options.notBefore = notBefore
+                }
+
+                const keyid = await evaluateNodeProperty(node.keyid, node.keyidType, node, msg);
+                if(keyid){
+                    options.header = {
+                        kid: keyid
+                    }
                 }
                 let secretOrPrivateKey = ''
                 switch (node.mode) {

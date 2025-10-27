@@ -43,6 +43,7 @@ This node allows you to sign and validate JSON Web Token (JWT)
 * **Audience**: Allows configuring the audience of the token.
 * **Issuer**: Allows configuring the issuer of the token.
 * **Not Before**: The "Not Before" (NBF) field in a token is used to specify the moment from which the token is valid. This means that the token will not be accepted by the server before the date and time specified in this field. The value is expressed in seconds.
+* **Keyid**: The Keyid field enables the inclusion of the kid header in token signatures.
 
 ## Node jwt-verify
 
@@ -73,7 +74,7 @@ This node allows verifying the authenticity of a JSON Web Token (JWT).
 * **Validate Audience**: Validates that the audience is correct.
 * **Validate Issuer**: Validates that the token issuer is correct.
 * **Validate Max Age**: The "max age" in a JSON Web Token (JWT) refers to the maximum time a token can be considered valid from the moment it was issued. The value is expressed in seconds
-* **Validate Claims**: Allows validating the different claims of the token, ideal for validating the scopes, roles, and users with access to some API resources.
+* **Validate Claims**: Allows validating the different claims of the token, ideal for validating the scopes, roles, and users with access to some API resources. It is also possible to validate objects in depth like "user.roles[0]"
     
 
 ## Examples
